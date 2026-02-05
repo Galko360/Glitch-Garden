@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PaladinRecipe
   m_EditorClassIdentifier: Assembly-CSharp::MergeRecipe
   inputA: {fileID: 11400000, guid: a738740a8dd720641b32ca46b8734f7a, type: 2}
-  inputB: {fileID: 11400000, guid: 7234c8f0c0b445f4e9017af6f8865ef2, type: 2}
+  inputB: {fileID: 11400000, guid: a738740a8dd720641b32ca46b8734f7a, type: 2}
   output: {fileID: 11400000, guid: 671629be933ed3d4397ece22253900b9, type: 2}

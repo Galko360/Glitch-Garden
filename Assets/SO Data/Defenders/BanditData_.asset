@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BanditData_
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   id: 
-  prefab: {fileID: 4539887198496878483, guid: b58b9fa71a92e534b89d52d1b7dc4c9c, type: 3}
+  prefab: {fileID: 4539887198496878483, guid: fc827d037c6c9244cba346abd41242d7, type: 3}
   icon: {fileID: 7482667652216324306, guid: 4e4583795a806f441a66c3afd9c29fb4, type: 3}
