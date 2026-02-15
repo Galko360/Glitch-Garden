@@ -2,27 +2,26 @@ using UnityEngine;
 
 public class UnitCombat : MonoBehaviour
 {
-    public enum AttackType { Melee, Ranged }
-
-    [Header("Attack Type")]
-    [SerializeField] private AttackType attackType = AttackType.Melee;
-
-    [Header("Raycast Settings")]
-    [SerializeField] private float rayDistance = 2f;                 // melee small, ranged big
-    [SerializeField] private Vector2 rayBoxSize = new Vector2(0.2f, 0.8f);
-    [SerializeField] private LayerMask enemyLayer;
-    [SerializeField] private Transform sensorOrigin;
-
     [Header("Combat")]
     [SerializeField] private int damage = 1;
     [SerializeField] private float attackCooldown = 1f;
 
     [Header("Ranged")]
-    [SerializeField] private Bullet bulletPrefab;
     [SerializeField] private Transform firePoint;
+    [SerializeField] private Bullet bulletPrefab;
 
     [Header("Health")]
     [SerializeField] private int hp = 3;
+
+    [Header("Attack Type")]
+    [SerializeField] private AttackType attackType = AttackType.Melee;
+    public enum AttackType { Melee, Ranged }
+
+    [Header("Raycast Settings")]
+    [SerializeField] private Transform sensorOrigin;
+    [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private Vector2 rayBoxSize = new Vector2(0.2f, 0.8f);
+    [SerializeField] private float rayDistance = 2f;                 // melee small, ranged big
 
     private float timer;
     private SpriteRenderer sr;
