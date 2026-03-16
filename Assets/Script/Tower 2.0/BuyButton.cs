@@ -14,6 +14,9 @@ public class BuyButton : MonoBehaviour
     [Header("References")]
     [SerializeField] private InventoryManager inventory;
 
+    [Header("Cost")]
+    [SerializeField] private int buyCost = 20;
+
     [Header("Buyable Units")]
     [SerializeField] private List<BuyableUnit> buyableUnits = new List<BuyableUnit>();
 
@@ -31,6 +34,12 @@ public class BuyButton : MonoBehaviour
         if (buyableUnits.Count == 0)
             return;
 
+        if (GoldManager.Instance != null && !GoldManager.Instance.TrySpend(buyCost))
+        {
+            Debug.Log("[BuyButton] Not enough gold.");
+            return;
+        }
+
         BuyableUnit selected = RollUnit();
 
         bool added = inventory.TryAddToFirstEmpty(
@@ -40,7 +49,7 @@ public class BuyButton : MonoBehaviour
 
         if (!added)
         {
-            // Inventory full – no side effects
+            // Inventory full ï¿½ no side effects
             return;
         }
 
