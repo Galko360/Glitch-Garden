@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 3478356715886554682}
   - component: {fileID: -1008975721728930845}
   - component: {fileID: 533135435547341811}
+  - component: {fileID: 1017008692282052869}
   m_Layer: 6
   m_Name: Paladin
   m_TagString: Defender
@@ -234,18 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 765f52f880c5c94439ba045fb12c8ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitCombat
-  attackType: 0
-  rayDistance: 1
-  rayBoxSize: {x: 1, y: 0.8}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  sensorOrigin: {fileID: 7767436326529159926}
-  damage: 5
-  attackCooldown: 1
-  bulletPrefab: {fileID: 0}
-  firePoint: {fileID: 0}
   hp: 30
+  attackCooldown: 1
 --- !u!114 &533135435547341811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +251,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashTime: 0.08
+--- !u!114 &1017008692282052869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3109526930121671296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71d36228cf0310c4588f835340f88db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeAttacker
+  damage: 2
+  sensorOrigin: {fileID: 7767436326529159926}
+  boxSize: {x: 0.2, y: 0.8}
+  range: 1.5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &4476595406044482161
 GameObject:
   m_ObjectHideFlags: 0

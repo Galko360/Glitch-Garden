@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 245409126068593611}
   - component: {fileID: 9205626941961610975}
   - component: {fileID: 7795976379293496308}
+  - component: {fileID: 3148455676256841859}
   m_Layer: 6
   m_Name: Bandit
   m_TagString: Defender
@@ -334,18 +335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 765f52f880c5c94439ba045fb12c8ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitCombat
-  attackType: 0
-  rayDistance: 2
-  rayBoxSize: {x: 1, y: 1}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  sensorOrigin: {fileID: 593302111258449306}
-  damage: 3
-  attackCooldown: 1
-  bulletPrefab: {fileID: 0}
-  firePoint: {fileID: 0}
   hp: 15
+  attackCooldown: 1
 --- !u!114 &7795976379293496308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,6 +351,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashTime: 0.08
+--- !u!114 &3148455676256841859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539887198496878483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0063db4d367fe25498cd01abb9efd387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedAttacker
+  damage: 3
+  bulletPrefab: {fileID: -3526071524381789497, guid: c304c8639be48824d86ecdc7ba51dbe9, type: 3}
+  firePoint: {fileID: 1009063110148385241}
+  sensorOrigin: {fileID: 593302111258449306}
+  boxSize: {x: 0.2, y: 0.8}
+  range: 5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &5683872270513898043
 GameObject:
   m_ObjectHideFlags: 0

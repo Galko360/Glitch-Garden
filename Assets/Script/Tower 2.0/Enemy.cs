@@ -10,6 +10,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int attackDamage = 1;
     [SerializeField] private float attackCooldown = 1f;
 
+    [Header("Gold")]
+    [SerializeField] private int goldReward = 5;
+
     [Header("Raycast (Detect Defenders)")]
     [SerializeField] private float rayDistance = 0.8f;                 // short
     [SerializeField] private Vector2 rayBoxSize = new Vector2(0.2f, 0.8f);
@@ -73,7 +76,11 @@ public class Enemy : MonoBehaviour
         hp -= dmg;
         GetComponent<DamageFlash>()?.Flash();
 
-        if (hp <= 0) Destroy(gameObject);
+        if (hp <= 0)
+        {
+            GoldManager.Instance?.AddGold(goldReward);
+            Destroy(gameObject);
+        }
     }
 
     private void FlashRed()
