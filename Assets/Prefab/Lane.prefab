@@ -193,9 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd3bba6e445b484caf5013f4aa10a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  rowIndex: 1
-  enemyPrefab: {fileID: 9085674948743521744, guid: ed96a1dd60ad1ae41870c0d84ce644fd, type: 3}
-  spawnedEnemies: []
+  defaultPrefab: {fileID: 9085674948743521744, guid: ed96a1dd60ad1ae41870c0d84ce644fd, type: 3}
 --- !u!1 &8575431416267831454
 GameObject:
   m_ObjectHideFlags: 0

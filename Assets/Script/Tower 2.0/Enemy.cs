@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Data (optional — overrides stats below if assigned)")]
+    [SerializeField] private EnemyData data;
+
     [Header("Move")]
     [SerializeField] private float speed = 1f;
 
@@ -14,7 +17,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int goldReward = 5;
 
     [Header("Raycast (Detect Defenders)")]
-    [SerializeField] private float rayDistance = 0.8f;                 // short
+    [SerializeField] private float rayDistance = 0.8f;
     [SerializeField] private Vector2 rayBoxSize = new Vector2(0.2f, 0.8f);
     [SerializeField] private LayerMask defenderLayer;
     [SerializeField] private Transform sensorOrigin;
@@ -25,6 +28,16 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
+
+        // If a data SO is assigned, let it override the serialized fields
+        if (data != null)
+        {
+            hp              = data.hp;
+            speed           = data.speed;
+            attackDamage    = data.attackDamage;
+            attackCooldown  = data.attackCooldown;
+            goldReward      = data.goldReward;
+        }
     }
 
 
