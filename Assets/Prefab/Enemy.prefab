@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: -7601209375117541316}
   - component: {fileID: 9085674948743521744}
   - component: {fileID: 5589992409979068205}
+  - component: {fileID: 5992154448354039958}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -247,6 +248,7 @@ MonoBehaviour:
   hp: 30
   attackDamage: 3
   attackCooldown: 1
+  goldReward: 5
   rayDistance: 1
   rayBoxSize: {x: 1, y: 0.8}
   defenderLayer:
@@ -267,6 +269,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashTime: 0.08
+--- !u!50 &5992154448354039958
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027989462392954556}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2543285010520164579
 GameObject:
   m_ObjectHideFlags: 0
