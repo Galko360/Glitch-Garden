@@ -30,7 +30,7 @@ public class RangedAttacker : MonoBehaviour, IAttackBehavior
         Transform spawn = firePoint != null ? firePoint : transform;
         Bullet b = Instantiate(bulletPrefab, spawn.position, Quaternion.identity);
         b.damage = damage;
-        b.SetTarget(target);
+        b.SetDirection(Vector2.left);
         return true;
     }
 

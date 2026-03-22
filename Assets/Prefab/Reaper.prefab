@@ -145,18 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 765f52f880c5c94439ba045fb12c8ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitCombat
-  attackType: 1
-  rayDistance: 7
-  rayBoxSize: {x: 7, y: 0.8}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  sensorOrigin: {fileID: 4832756863520246721}
-  damage: 1
-  attackCooldown: 1
-  bulletPrefab: {fileID: -3526071524381789497, guid: c304c8639be48824d86ecdc7ba51dbe9, type: 3}
-  firePoint: {fileID: 4832756863520246721}
   hp: 6
+  attackCooldown: 1
 --- !u!61 &7835996685930556914
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -26,6 +26,7 @@ public class WaveController : MonoBehaviour
     public float BreakTimeRemaining { get; private set; } = 0f;
 
     private Coroutine running;
+    private int spawnIndex = 0;
 
     // -------------------------------------------------
 
@@ -107,7 +108,7 @@ public class WaveController : MonoBehaviour
         int extraWaves = waveNumber - waves.Count;
         generated.enemyCount    = baseEnemyCount + (extraWaves * enemyCountIncreasePerWave);
         generated.spawnInterval = Mathf.Max(minSpawnInterval, baseSpawnInterval - (extraWaves * spawnIntervalDecreasePerWave));
-        generated.roundRobin    = true;
+        generated.roundRobin    = false;
 
         return generated;
     }
@@ -119,8 +120,7 @@ public class WaveController : MonoBehaviour
         if (!roundRobin)
             return spawners[Random.Range(0, spawners.Count)];
 
-        int pick = (CurrentWave - 1) % spawners.Count;
-        return spawners[pick];
+        return spawners[spawnIndex++ % spawners.Count];
     }
 
     // -------------------------------------------------
