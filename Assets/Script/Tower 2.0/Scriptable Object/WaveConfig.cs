@@ -10,6 +10,13 @@ public class WaveConfig : ScriptableObject
     [Header("Lane Distribution")]
     public bool roundRobin = true;
 
-    [Header("Optional: choose enemy prefab per wave (if empty, spawner uses its default)")]
-    public Enemy[] possibleEnemies;
+    [Header("Enemy Types (if empty, spawner uses its default prefab)")]
+    public EnemyData[] possibleEnemies;
+
+    /// <summary>Returns a random EnemyData from the list, or null if none assigned.</summary>
+    public EnemyData GetRandomEnemy()
+    {
+        if (possibleEnemies == null || possibleEnemies.Length == 0) return null;
+        return possibleEnemies[Random.Range(0, possibleEnemies.Length)];
+    }
 }
