@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ReaperRecipe
   m_EditorClassIdentifier: Assembly-CSharp::MergeRecipe
   inputA: {fileID: 11400000, guid: 7234c8f0c0b445f4e9017af6f8865ef2, type: 2}
-  inputB: {fileID: 11400000, guid: 7234c8f0c0b445f4e9017af6f8865ef2, type: 2}
+  inputB: {fileID: 11400000, guid: 449c782605975de45867a4ff4a7f4fbb, type: 2}
   output: {fileID: 11400000, guid: ddb97c8227949e7479f92e242ecb3d9e, type: 2}

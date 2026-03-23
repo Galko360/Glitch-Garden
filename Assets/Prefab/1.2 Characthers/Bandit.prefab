@@ -337,6 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitCombat
   hp: 15
+  maxHp: 0
   attackCooldown: 1
 --- !u!114 &7795976379293496308
 MonoBehaviour:
@@ -364,8 +365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0063db4d367fe25498cd01abb9efd387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedAttacker
-  damage: 3
-  bulletPrefab: {fileID: -3526071524381789497, guid: c304c8639be48824d86ecdc7ba51dbe9, type: 3}
+  damage: 1
+  bulletPrefab: {fileID: -3526071524381789497, guid: 922d5f7769fb245488d00d235399c824, type: 3}
   firePoint: {fileID: 1009063110148385241}
   sensorOrigin: {fileID: 593302111258449306}
   boxSize: {x: 0.2, y: 0.8}

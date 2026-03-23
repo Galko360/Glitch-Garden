@@ -48,6 +48,7 @@ public class Bullet : MonoBehaviour
         else
         {
             e.TakeDamage(damage);
+            GetComponent<BleedOnHit>()?.Apply(e);
             if (!isPiercing)
                 Destroy(gameObject);
         }

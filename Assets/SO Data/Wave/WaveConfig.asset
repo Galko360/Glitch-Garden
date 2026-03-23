@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaveConfig
   enemyCount: 40
   spawnInterval: 4
-  roundRobin: 1
+  roundRobin: 0
   possibleEnemies: []

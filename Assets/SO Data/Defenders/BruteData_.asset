@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BruteData_
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   id: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 4539887198496878483, guid: e59a67c5e0ca6bd448f6779fa79eb5bf, type: 3}
   icon: {fileID: 0}

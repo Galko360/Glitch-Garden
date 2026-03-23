@@ -719,6 +719,8 @@ MonoBehaviour:
     icon: {fileID: 5100586705115029124, guid: 16924c30dccd6a045a639a844441e8e1, type: 3}
   - prefab: {fileID: 1771463465841459968, guid: b956f25073918934ea8e87283e8800ba, type: 3}
     icon: {fileID: 10724651961027260, guid: d00920f0c34134745a1515a7aa19fb2c, type: 3}
+  - prefab: {fileID: 1771463465841459968, guid: b1778d24f96290b40850d482c4dd4b68, type: 3}
+    icon: {fileID: 2224302859636839978, guid: c087ae47d4d0f504ab8e74424f900d91, type: 3}
   repeatDecreaserActive: 0
   rollsBeforeDecrease: 2
   chanceReduction: 0.5
