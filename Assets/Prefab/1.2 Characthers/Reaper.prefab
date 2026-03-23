@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 3838721011827553075}
   - component: {fileID: 5290371359268224662}
   - component: {fileID: 2722944564684598918}
-  - component: {fileID: 7553025932217266382}
   - component: {fileID: 7835996685930556914}
   - component: {fileID: 1299039007970318267}
+  - component: {fileID: 7553025932217266382}
+  - component: {fileID: 7935466431954796546}
+  - component: {fileID: 8437544172457075746}
   m_Layer: 6
   m_Name: Reaper
   m_TagString: Defender
@@ -134,20 +136,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &7553025932217266382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1771463465841459968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 765f52f880c5c94439ba045fb12c8ec6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UnitCombat
-  hp: 6
-  attackCooldown: 1
 --- !u!61 &7835996685930556914
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -208,6 +196,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashTime: 0.08
+--- !u!114 &7553025932217266382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771463465841459968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765f52f880c5c94439ba045fb12c8ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitCombat
+  hp: 6
+  maxHp: 0
+  attackCooldown: 1
+--- !u!114 &7935466431954796546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771463465841459968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0063db4d367fe25498cd01abb9efd387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedAttacker
+  damage: 2
+  bulletPrefab: {fileID: -3526071524381789497, guid: 66bd388a38183704086b28ae6c976366, type: 3}
+  firePoint: {fileID: 3838721011827553075}
+  sensorOrigin: {fileID: 4832756863520246721}
+  boxSize: {x: 0.2, y: 0.8}
+  range: 5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &8437544172457075746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771463465841459968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b7d970634b2d241acec1a93269cf1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitAnimator
+  animator: {fileID: 7234131444668143930}
+  attackTrigger: Attack
+  hitTrigger: Hit
+  deathTrigger: Death
 --- !u!1 &2594713286220759596
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,5 +575,10 @@ PrefabInstance:
 --- !u!4 &2622465985581922066 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7348372980432531423, guid: dcd76855714e6454391835a55ae4928c, type: 3}
+  m_PrefabInstance: {fileID: 4728344896675895501}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7234131444668143930 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2736702691857678839, guid: dcd76855714e6454391835a55ae4928c, type: 3}
   m_PrefabInstance: {fileID: 4728344896675895501}
   m_PrefabAsset: {fileID: 0}

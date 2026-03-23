@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7553025932217266382}
   - component: {fileID: 7835996685930556914}
   - component: {fileID: 1299039007970318267}
+  - component: {fileID: 8113318054996987680}
+  - component: {fileID: 8720547246734443486}
   m_Layer: 6
   m_Name: Ranger
   m_TagString: Defender
@@ -147,7 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitCombat
   hp: 6
-  attackCooldown: 1
+  maxHp: 0
+  attackCooldown: 2
 --- !u!61 &7835996685930556914
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -208,6 +211,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashTime: 0.08
+--- !u!114 &8113318054996987680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771463465841459968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0063db4d367fe25498cd01abb9efd387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedAttacker
+  damage: 10
+  bulletPrefab: {fileID: -3526071524381789497, guid: c304c8639be48824d86ecdc7ba51dbe9, type: 3}
+  firePoint: {fileID: 3838721011827553075}
+  sensorOrigin: {fileID: 4832756863520246721}
+  boxSize: {x: 0.2, y: 0.8}
+  range: 5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &8720547246734443486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771463465841459968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b7d970634b2d241acec1a93269cf1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitAnimator
+  animator: {fileID: 8361485589856483267}
+  attackTrigger: Attack
+  hitTrigger: Hit
+  deathTrigger: Death
 --- !u!1 &2594713286220759596
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +465,11 @@ PrefabInstance:
 --- !u!4 &2495648852290917471 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4510513098576342292, guid: fc3e0be193b244a418b5d8fcdc0e3f7f, type: 3}
+  m_PrefabInstance: {fileID: 2034180810580097355}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8361485589856483267 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7508391718614175368, guid: fc3e0be193b244a418b5d8fcdc0e3f7f, type: 3}
   m_PrefabInstance: {fileID: 2034180810580097355}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8570401904148765713

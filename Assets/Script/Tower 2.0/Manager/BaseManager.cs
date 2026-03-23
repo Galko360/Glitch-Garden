@@ -64,8 +64,5 @@ public class BaseManager : MonoBehaviour
         isDead = true;
         Debug.Log("[Base] Base destroyed — GAME OVER");
         OnBaseDied?.Invoke();
-
-        // Freeze the game after a short moment so the player sees what happened
-        Time.timeScale = 0f;
     }
 }

@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 9085674948743521744}
   - component: {fileID: 5589992409979068205}
   - component: {fileID: 5992154448354039958}
+  - component: {fileID: 8020213549966779250}
   m_Layer: 7
   m_Name: DeathKnight
   m_TagString: Enemy
@@ -249,7 +250,7 @@ MonoBehaviour:
   speed: 1
   hp: 30
   attackDamage: 3
-  attackCooldown: 1
+  attackCooldown: 1.4
   goldReward: 5
   rayDistance: 1
   rayBoxSize: {x: 1, y: 0.8}
@@ -298,6 +299,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8020213549966779250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027989462392954556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51392ce3c522d8f4f804449f98042e0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimator
+  animator: {fileID: 7338562722787395531}
+  isEngagedParam: IsEngaged
+  attackTrigger: Attack
 --- !u!1 &2543285010520164579
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,6 +434,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a47a82d12c8407f4c96b3e371c068ae7, type: 3}
+--- !u!95 &7338562722787395531 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6411330119424077843, guid: a47a82d12c8407f4c96b3e371c068ae7, type: 3}
+  m_PrefabInstance: {fileID: 4408550336267188184}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7765013509142604527 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6263539000593587511, guid: a47a82d12c8407f4c96b3e371c068ae7, type: 3}

@@ -5,6 +5,10 @@ public class UnitCombat : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField] private int hp = 3;
+    [SerializeField] private int maxHp = 3;
+
+    public int HP    => hp;
+    public int MaxHP => maxHp;
 
     [Header("Attack")]
     [SerializeField] private float attackCooldown = 1f;
@@ -21,6 +25,9 @@ public class UnitCombat : MonoBehaviour
 
     private void Awake()
     {
+        // If maxHp wasn't set in Inspector, mirror it from hp
+        if (maxHp <= 0) maxHp = hp;
+
         attackBehavior = GetComponent<IAttackBehavior>();
         attackBehavior?.Init(this);
     }
@@ -50,6 +57,11 @@ public class UnitCombat : MonoBehaviour
             OnDeath?.Invoke();
             Destroy(gameObject);
         }
+    }
+
+    public void Heal(int amount)
+    {
+        hp = Mathf.Min(hp + amount, maxHp);
     }
 
     // -------------------------------------------------
