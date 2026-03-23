@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: -1008975721728930845}
   - component: {fileID: 1017008692282052869}
   - component: {fileID: 5233534133012429206}
+  - component: {fileID: 3346899609956730518}
   m_Layer: 6
   m_Name: Paladin
   m_TagString: Defender
@@ -291,6 +292,22 @@ MonoBehaviour:
   defenderLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &3346899609956730518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3109526930121671296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b7d970634b2d241acec1a93269cf1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitAnimator
+  animator: {fileID: 4745470080253639710}
+  attackTrigger: Attack
+  hitTrigger: Hit
+  deathTrigger: Death
 --- !u!1 &4476595406044482161
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,6 +440,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6337e17a406343f4f8e53888b5d52f8a, type: 3}
+--- !u!95 &4745470080253639710 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4716170669287304716, guid: 6337e17a406343f4f8e53888b5d52f8a, type: 3}
+  m_PrefabInstance: {fileID: 47428369213510162}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4998960759652015905 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5041673727181557043, guid: 6337e17a406343f4f8e53888b5d52f8a, type: 3}

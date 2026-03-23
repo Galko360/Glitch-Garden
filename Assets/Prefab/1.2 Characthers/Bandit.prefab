@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 9205626941961610975}
   - component: {fileID: 7795976379293496308}
   - component: {fileID: 3148455676256841859}
+  - component: {fileID: 2975539195757199301}
   m_Layer: 6
   m_Name: Bandit
   m_TagString: Defender
@@ -374,6 +375,22 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &2975539195757199301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539887198496878483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b7d970634b2d241acec1a93269cf1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitAnimator
+  animator: {fileID: 327404785314789092}
+  attackTrigger: Attack
+  hitTrigger: Hit
+  deathTrigger: Death
 --- !u!1 &5683872270513898043
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,6 +495,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56ae2b5d594939543a5d50c91ae47a58, type: 3}
+--- !u!95 &327404785314789092 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 722183790220803472, guid: 56ae2b5d594939543a5d50c91ae47a58, type: 3}
+  m_PrefabInstance: {fileID: 1048945905414474612}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1362076066656335237 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2047319552270286577, guid: 56ae2b5d594939543a5d50c91ae47a58, type: 3}

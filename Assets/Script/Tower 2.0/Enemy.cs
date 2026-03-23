@@ -1,7 +1,12 @@
+using System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public event Action OnStartAttacking;
+    public event Action OnStopAttacking;
+    public event Action OnAttack;
+
     [Header("Data (optional — overrides stats below if assigned)")]
     [SerializeField] private EnemyData data;
 
@@ -23,6 +28,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform sensorOrigin;
 
     private float timer;
+    private bool isAttacking;
     private SpriteRenderer sr;
 
     private void Awake()
@@ -53,16 +59,28 @@ public class Enemy : MonoBehaviour
         if (defender != null)
         {
             // Engage: stop moving and attack on cooldown
+            if (!isAttacking)
+            {
+                isAttacking = true;
+                OnStartAttacking?.Invoke();
+            }
+
             if (timer <= 0f)
             {
-                Debug.Log($"{name} attacks {defender.name}");
                 defender.TakeDamage(attackDamage);
                 timer = attackCooldown;
+                OnAttack?.Invoke();
             }
             return;
         }
 
         // No defender ahead -> move forward
+        if (isAttacking)
+        {
+            isAttacking = false;
+            OnStopAttacking?.Invoke();
+        }
+
         transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
 

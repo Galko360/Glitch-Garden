@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1299039007970318267}
   - component: {fileID: 7553025932217266382}
   - component: {fileID: 2111247118726274639}
+  - component: {fileID: 2653438727847575523}
   m_Layer: 6
   m_Name: Archer
   m_TagString: Defender
@@ -230,6 +231,22 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &2653438727847575523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771463465841459968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b7d970634b2d241acec1a93269cf1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitAnimator
+  animator: {fileID: 6811226936160326565}
+  attackTrigger: Attack
+  hitTrigger: Hit
+  deathTrigger: Death
 --- !u!1 &2594713286220759596
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,5 +472,10 @@ PrefabInstance:
 --- !u!4 &2950855135725127231 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6774438597884303918, guid: 0cb30c3d4fea08347902a79c3e2c4567, type: 3}
+  m_PrefabInstance: {fileID: 8570401904148765713}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6811226936160326565 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2915651743724785588, guid: 0cb30c3d4fea08347902a79c3e2c4567, type: 3}
   m_PrefabInstance: {fileID: 8570401904148765713}
   m_PrefabAsset: {fileID: 0}

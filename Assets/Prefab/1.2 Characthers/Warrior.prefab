@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 9205626941961610975}
   - component: {fileID: 7795976379293496308}
   - component: {fileID: 7829697605597115708}
+  - component: {fileID: 6504491812420844445}
   m_Layer: 6
   m_Name: Warrior
   m_TagString: Defender
@@ -247,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitCombat
   hp: 15
   maxHp: 0
-  attackCooldown: 1
+  attackCooldown: 1.5
 --- !u!114 &7795976379293496308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,6 +282,22 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &6504491812420844445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539887198496878483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b7d970634b2d241acec1a93269cf1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitAnimator
+  animator: {fileID: 8186936044553941069}
+  attackTrigger: Attack
+  hitTrigger: Hit
+  deathTrigger: Death
 --- !u!1 &5683872270513898043
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,5 +433,10 @@ PrefabInstance:
 --- !u!4 &6428337919643027947 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6746694396599398299, guid: 9a6509c342b492c499b6317214a43b0a, type: 3}
+  m_PrefabInstance: {fileID: 330761176270235248}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8186936044553941069 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8433781389583275581, guid: 9a6509c342b492c499b6317214a43b0a, type: 3}
   m_PrefabInstance: {fileID: 330761176270235248}
   m_PrefabAsset: {fileID: 0}
