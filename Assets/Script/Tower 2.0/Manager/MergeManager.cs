@@ -58,15 +58,17 @@ public class MergeManager : MonoBehaviour
         {
             GameObject unit = Instantiate(unitPrefab, tile.CenterWorld, Quaternion.identity);
 
-            // Optional: lane row assignment (only if UnitCombat exists)
-            Lane lane = tile.GetComponentInParent<Lane>();
-            if (lane != null && unit.TryGetComponent<UnitCombat>(out var combat))
+            if (unit.TryGetComponent<UnitCombat>(out var combat))
             {
-                // If your UnitCombat temporary version DOESN'T have SetRow, delete next line
-                combat.SetRow(lane.RowIndex);
+                // Lane row assignment (independent of death subscription)
+                Lane lane = tile.GetComponentInParent<Lane>();
+                if (lane != null) combat.SetRow(lane.RowIndex);
+
+                // Always subscribe to death so the tile frees itself
+                SubscribeToUnitDeath(combat, tile);
             }
 
-            tile.TryOccupy(unit.transform); //  only once
+            tile.TryOccupy(unit.transform);
             tileToUnit[tile] = unit.transform;
             tileToData[tile] = incomingData;
             return true;
@@ -92,11 +94,10 @@ public class MergeManager : MonoBehaviour
 
         GameObject merged = Instantiate(outputData.prefab, tile.CenterWorld, Quaternion.identity);
 
-        Lane mergedLane = tile.GetComponentInParent<Lane>();
-        if (mergedLane != null && merged.TryGetComponent<UnitCombat>(out var mergedCombat))
+        if (merged.TryGetComponent<UnitCombat>(out var mergedCombat))
         {
-            // If your UnitCombat temporary version DOESN'T have SetRow, delete next line
-            mergedCombat.SetRow(mergedLane.RowIndex);
+            Lane mergedLane = tile.GetComponentInParent<Lane>();
+            if (mergedLane != null) mergedCombat.SetRow(mergedLane.RowIndex);
         }
 
         tile.TryOccupy(merged.transform);
@@ -104,6 +105,25 @@ public class MergeManager : MonoBehaviour
         tileToUnit[tile] = merged.transform;
         tileToData[tile] = outputData;
 
+        if (merged.TryGetComponent<UnitCombat>(out var mergedCombat2))
+            SubscribeToUnitDeath(mergedCombat2, tile);
+
         return true;
+    }
+
+    // ─── Death cleanup ─────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// When the unit on <paramref name="tile"/> fires OnDeath, clear the tile
+    /// and remove it from both tracking dictionaries.
+    /// </summary>
+    private void SubscribeToUnitDeath(UnitCombat combat, TileCell tile)
+    {
+        combat.OnDeath += () =>
+        {
+            tile.Clear();               // marks tile free + resets icon to Unoccupied
+            tileToUnit.Remove(tile);
+            tileToData.Remove(tile);
+        };
     }
 }

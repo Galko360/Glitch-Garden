@@ -20,8 +20,15 @@ public class DragManager : MonoBehaviour
     [Header("Drag Ghost (Canvas/DragGhost Image)")]
     [SerializeField] private Image dragGhost;
 
+    [Header("Grid Highlighting")]
+    [Tooltip("Uncheck to disable tile highlight during drag (e.g. for debugging)")]
+    [SerializeField] private bool highlightOnDrag = true;
+
     private bool isDragging;
     private int draggingSlotIndex = -1;
+
+    // Cached once in Start — covers all TileCells spawned at scene load
+    private TileCell[] allTiles;
 
     private void Start()
     {
@@ -30,6 +37,9 @@ public class DragManager : MonoBehaviour
             dragGhost.raycastTarget = false;
             dragGhost.gameObject.SetActive(false);
         }
+
+        // Cache every TileCell present in the scene at startup
+        allTiles = FindObjectsByType<TileCell>(FindObjectsSortMode.None);
     }
 
     private void Update()
@@ -42,7 +52,7 @@ public class DragManager : MonoBehaviour
             return;
         }
 
-        // dragging
+        // Dragging
         UpdateGhostPosition(Input.mousePosition);
         DragMoved?.Invoke(Input.mousePosition);
 
@@ -68,6 +78,7 @@ public class DragManager : MonoBehaviour
             UpdateGhostPosition(screenPos);
         }
 
+        ShowAvailableTiles();        // ← highlight grid
         DragStarted?.Invoke(slotIndex);
     }
 
@@ -89,8 +100,35 @@ public class DragManager : MonoBehaviour
         if (dragGhost != null)
             dragGhost.gameObject.SetActive(false);
 
+        ResetTileHighlights();      // ← restore grid visuals
         DragEnded?.Invoke(endedSlot, screenPos, placed);
     }
+
+    // ─── Tile Highlighting ──────────────────────────────────────────────────────
+
+    /// <summary>
+    /// While dragging: show Available on empty tiles, Occupied on occupied ones.
+    /// </summary>
+    private void ShowAvailableTiles()
+    {
+        if (!highlightOnDrag || allTiles == null) return;
+
+        foreach (TileCell tile in allTiles)
+            tile.SetState(tile.IsOccupied ? TileState.Occupied : TileState.Available);
+    }
+
+    /// <summary>
+    /// After drag ends: restore each tile to its natural Unoccupied / Occupied icon.
+    /// </summary>
+    private void ResetTileHighlights()
+    {
+        if (allTiles == null) return;
+
+        foreach (TileCell tile in allTiles)
+            tile.RefreshIcon();
+    }
+
+    // ─── Helpers ────────────────────────────────────────────────────────────────
 
     private void UpdateGhostPosition(Vector2 screenPos)
     {
@@ -110,7 +148,6 @@ public class DragManager : MonoBehaviour
 
     private int FindSlotIndexAtScreenPos(Vector2 screenPos)
     {
-        // Only checks up to 5 rects (very cheap)
         for (int i = 0; i < slotIconRects.Length; i++)
         {
             RectTransform rt = slotIconRects[i];
