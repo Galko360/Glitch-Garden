@@ -7,6 +7,9 @@ public class EnemyData : ScriptableObject
     public string id;               // e.g. "Grunt", "Brute"
     public Enemy prefab;
 
+    [Header("Visuals")]
+    public Sprite icon;             // portrait shown in inspector + UI
+
     [Header("Stats")]
     public int hp           = 3;
     public float speed      = 1f;
