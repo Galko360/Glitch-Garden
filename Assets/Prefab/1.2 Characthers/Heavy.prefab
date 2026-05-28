@@ -247,8 +247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 765f52f880c5c94439ba045fb12c8ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitCombat
-  hp: 60
-  maxHp: 0
+  hp: 30
+  maxHp: 30
   attackCooldown: 2
 --- !u!114 &7795976379293496308
 MonoBehaviour:
@@ -276,10 +276,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903024bfc34b1fe4b84c56022eca7211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CleaveAttacker
-  damage: 10
+  damage: 5
   sensorOrigin: {fileID: 593302111258449306}
   range: 2
-  boxSize: {x: 0.2, y: 2}
+  boxSize: {x: 0.2, y: 0.7}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128

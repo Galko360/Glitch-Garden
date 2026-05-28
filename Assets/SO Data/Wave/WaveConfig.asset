@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: WaveConfig
   m_EditorClassIdentifier: Assembly-CSharp::WaveConfig
   enemyCount: 10
-  spawnInterval: 2
+  spawnInterval: 5
   roundRobin: 0
   possibleEnemies: []
