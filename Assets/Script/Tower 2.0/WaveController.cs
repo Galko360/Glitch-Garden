@@ -11,6 +11,9 @@ public class WaveController : MonoBehaviour
     [SerializeField] private List<WaveConfig> waves = new();
     [SerializeField] private bool autoStart = true;
 
+    [Header("Prep Phase (before wave 1)")]
+    [SerializeField] private float prepDuration = 10f;
+
     [Header("Break Between Waves")]
     [SerializeField] private float breakDuration = 8f;
 
@@ -23,6 +26,7 @@ public class WaveController : MonoBehaviour
 
     public int CurrentWave { get; private set; } = 0;   // 1-based, shown to player
     public bool IsBreak { get; private set; } = false;
+    public bool IsPrepPhase { get; private set; } = false;
     public float BreakTimeRemaining { get; private set; } = 0f;
 
     private Coroutine running;
@@ -51,6 +55,21 @@ public class WaveController : MonoBehaviour
             Debug.LogError("[Wave] No spawners found.");
             yield break;
         }
+
+        // ── Prep phase ──────────────────────────────────────────
+        IsPrepPhase = true;
+        IsBreak = true;
+        BreakTimeRemaining = prepDuration;
+
+        while (BreakTimeRemaining > 0f)
+        {
+            BreakTimeRemaining -= Time.deltaTime;
+            yield return null;
+        }
+
+        IsPrepPhase = false;
+        IsBreak = false;
+        // ────────────────────────────────────────────────────────
 
         while (true)
         {

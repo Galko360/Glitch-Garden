@@ -248,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   data: {fileID: 0}
   speed: 1
-  hp: 30
+  hp: 20
   attackDamage: 3
   attackCooldown: 1.4
   goldReward: 5

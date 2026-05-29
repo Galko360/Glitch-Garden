@@ -18,7 +18,6 @@ public class DamageFlash : MonoBehaviour
         for (int i = 0; i < renderers.Length; i++)
             originalColors[i] = renderers[i].color;
 
-        Debug.Log($"{name} found {renderers.Length} SpriteRenderers");
     }
 
     public void Flash()

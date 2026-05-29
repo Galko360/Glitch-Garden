@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitCombat
   hp: 15
-  maxHp: 0
+  maxHp: 15
   attackCooldown: 1
 --- !u!114 &7795976379293496308
 MonoBehaviour:

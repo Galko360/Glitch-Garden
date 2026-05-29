@@ -208,9 +208,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 765f52f880c5c94439ba045fb12c8ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitCombat
-  hp: 6
-  maxHp: 0
-  attackCooldown: 1
+  hp: 10
+  maxHp: 10
+  attackCooldown: 3
 --- !u!114 &-4603453113182202911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +228,7 @@ MonoBehaviour:
   firePoint: {fileID: 3838721011827553075}
   fireballCount: 3
   spreadAngle: 30
-  range: 6
+  range: 8
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
