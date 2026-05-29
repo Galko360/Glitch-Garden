@@ -15,4 +15,5 @@ MonoBehaviour:
   enemyCount: 10
   spawnInterval: 5
   roundRobin: 0
-  possibleEnemies: []
+  possibleEnemies:
+  - {fileID: 11400000, guid: 2e8b8ce4086594f4caa7090db37881e3, type: 2}

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50a162eedd4265449a68185e27094394, type: 3}
   m_Name: EnemyData_DeathKnight
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  id: 
-  prefab: {fileID: 0}
-  icon: {fileID: 0}
+  id: Death Knight
+  prefab: {fileID: 9085674948743521744, guid: ed96a1dd60ad1ae41870c0d84ce644fd, type: 3}
+  icon: {fileID: -7339290641555315788, guid: 315051128f814e94aadba32f79462327, type: 3}
   hp: 3
   speed: 1
   attackDamage: 1
