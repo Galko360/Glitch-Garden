@@ -9,6 +9,8 @@ public class MergeDatabase : ScriptableObject
     private Dictionary<ulong, UnitData> mergeLookup;
     private Dictionary<GameObject, UnitData> prefabLookup;
 
+    public IReadOnlyList<MergeRecipe> Recipes => recipes;
+
     private void OnEnable()
     {
         BuildLookups();
