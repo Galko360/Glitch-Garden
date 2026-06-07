@@ -6,7 +6,6 @@ public class EnemyDataInspector : Editor
 {
     // ── EditorPrefs keys (shared across all EnemyData assets) ────────────────
     private const string KEY_MAX_HP     = "GG_EnemyData_MaxHP";
-    private const string KEY_MAX_SPEED  = "GG_EnemyData_MaxSpeed";
     private const string KEY_MAX_DAMAGE = "GG_EnemyData_MaxDamage";
 
     // ── Foldout state ─────────────────────────────────────────────────────────
@@ -24,9 +23,8 @@ public class EnemyDataInspector : Editor
         serializedObject.Update();
 
         // Load display maxes from EditorPrefs
-        int   maxHp     = EditorPrefs.GetInt  (KEY_MAX_HP,     50);
-        float maxSpeed  = EditorPrefs.GetFloat(KEY_MAX_SPEED,  5f);
-        int   maxDamage = EditorPrefs.GetInt  (KEY_MAX_DAMAGE, 20);
+        int maxHp     = EditorPrefs.GetInt(KEY_MAX_HP,     50);
+        int maxDamage = EditorPrefs.GetInt(KEY_MAX_DAMAGE, 20);
 
         // ── Header ────────────────────────────────────────────────────────────
         DrawHeader(data);
@@ -79,15 +77,12 @@ public class EnemyDataInspector : Editor
                 EditorStyles.miniLabel);
             EditorGUILayout.Space(2);
 
-            int   newMaxHp     = EditorGUILayout.IntField  ("Max HP",     maxHp);
-            float newMaxSpeed  = EditorGUILayout.FloatField("Max Speed",  maxSpeed);
-            int   newMaxDamage = EditorGUILayout.IntField  ("Max Damage", maxDamage);
+            int newMaxHp     = EditorGUILayout.IntField("Max HP",     maxHp);
+            int newMaxDamage = EditorGUILayout.IntField("Max Damage", maxDamage);
 
             // Persist changes immediately
             if (newMaxHp != maxHp)
                 EditorPrefs.SetInt(KEY_MAX_HP, Mathf.Max(1, newMaxHp));
-            if (!Mathf.Approximately(newMaxSpeed, maxSpeed))
-                EditorPrefs.SetFloat(KEY_MAX_SPEED, Mathf.Max(0.01f, newMaxSpeed));
             if (newMaxDamage != maxDamage)
                 EditorPrefs.SetInt(KEY_MAX_DAMAGE, Mathf.Max(1, newMaxDamage));
 
