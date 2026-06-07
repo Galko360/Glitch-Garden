@@ -208,8 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 765f52f880c5c94439ba045fb12c8ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitCombat
-  hp: 10
-  maxHp: 10
+  hp: 75
+  maxHp: 75
   attackCooldown: 3
 --- !u!114 &-4603453113182202911
 MonoBehaviour:
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e185889f28568041a209ed1a80a3442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MultiFireballAttacker
-  damage: 2
+  damage: 10
   fireballPrefab: {fileID: -3526071524381789497, guid: c304c8639be48824d86ecdc7ba51dbe9, type: 3}
   firePoint: {fileID: 3838721011827553075}
   fireballCount: 3

@@ -4,8 +4,8 @@ using UnityEngine;
 public class UnitCombat : MonoBehaviour
 {
     [Header("Health")]
-    [SerializeField] private int hp = 3;
-    [SerializeField] private int maxHp = 3;
+    [StatBar(100)] [SerializeField] private int hp = 3;
+    [StatBar(100)] [SerializeField] private int maxHp = 3;
 
     public int HP    => hp;
     public int MaxHP => maxHp;

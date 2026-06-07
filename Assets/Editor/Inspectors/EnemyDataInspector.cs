@@ -40,7 +40,6 @@ public class EnemyDataInspector : Editor
 
         // ── Stat bars ─────────────────────────────────────────────────────────
         DrawStatBar("HP",     data.hp,           maxHp,     new Color(0.25f, 0.85f, 0.25f));
-        DrawStatBar("Speed",  data.speed,         maxSpeed,  new Color(0.25f, 0.55f, 1.00f));
         DrawStatBar("Damage", data.attackDamage,  maxDamage, new Color(1.00f, 0.30f, 0.20f));
 
         EditorGUILayout.PropertyField(serializedObject.FindProperty("attackCooldown"));

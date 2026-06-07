@@ -7,6 +7,6 @@ public class UnitData : ScriptableObject
     public string id; // e.g., "Warrior", "Mage"
 
     [Header("Visuals + Spawn")]
-    public GameObject prefab; // world unit to spawn
-    public Sprite icon;       // UI icon
+    public GameObject prefab;               // world unit to spawn
+    [PreviewSprite(72f)] public Sprite icon; // UI icon
 }

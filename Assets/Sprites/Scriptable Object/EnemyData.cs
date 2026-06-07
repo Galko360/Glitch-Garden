@@ -8,12 +8,12 @@ public class EnemyData : ScriptableObject
     public Enemy prefab;
 
     [Header("Visuals")]
-    public Sprite icon;             // portrait shown in inspector + UI
+    [PreviewSprite(72f)] public Sprite icon;    // portrait shown in inspector + UI
 
     [Header("Stats")]
-    public int hp           = 3;
+    [StatBar(100)]  public int hp           = 3;
+    [StatBar(20)]  public int attackDamage = 1;
     public float speed      = 1f;
-    public int attackDamage = 1;
     public float attackCooldown = 1f;
 
     [Header("Reward")]

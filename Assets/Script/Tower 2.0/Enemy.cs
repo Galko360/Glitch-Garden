@@ -14,8 +14,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float speed = 1f;
 
     [Header("Combat")]
-    [SerializeField] private int hp = 3;
-    [SerializeField] private int attackDamage = 1;
+    [StatBar(50)]  [SerializeField] private int hp = 3;
+    [StatBar(20)]  [SerializeField] private int attackDamage = 1;
     [SerializeField] private float attackCooldown = 1f;
 
     [Header("Gold")]

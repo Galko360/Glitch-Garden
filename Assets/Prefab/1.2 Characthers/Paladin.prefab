@@ -252,8 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 765f52f880c5c94439ba045fb12c8ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitCombat
-  hp: 30
-  maxHp: 0
+  hp: 70
+  maxHp: 70
   attackCooldown: 1
 --- !u!114 &1017008692282052869
 MonoBehaviour:
