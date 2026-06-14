@@ -1,29 +1,26 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private Enemy enemyPrefab;
+    [SerializeField] private Enemy defaultPrefab;
 
     private int rowIndex;
 
-    public void SetRow(int row)
-    {
-        rowIndex = row;
-    }
+    public void SetRow(int row) => rowIndex = row;
 
     [ContextMenu("Spawn Enemy")]
-
-    public Enemy SpawnEnemy()
+    public Enemy SpawnEnemy(EnemyData data = null)
     {
-        if (enemyPrefab == null)
+        // Use the data's prefab if provided, otherwise fall back to the default
+        Enemy prefabToUse = (data != null && data.prefab != null) ? data.prefab : defaultPrefab;
+
+        if (prefabToUse == null)
         {
-            Debug.LogError($"{name}: Enemy prefab missing");
+            Debug.LogError($"{name}: No enemy prefab assigned");
             return null;
         }
 
-        Enemy enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-      //  enemy.SetRow(rowIndex);
+        Enemy enemy = Instantiate(prefabToUse, transform.position, Quaternion.identity);
         return enemy;
     }
 }

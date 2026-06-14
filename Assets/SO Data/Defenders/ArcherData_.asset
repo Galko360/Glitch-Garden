@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ArcherData_
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   id: 
-  prefab: {fileID: 1771463465841459968, guid: b956f25073918934ea8e87283e8800ba, type: 3}
+  prefab: {fileID: 1771463465841459968, guid: b1778d24f96290b40850d482c4dd4b68, type: 3}
   icon: {fileID: -2413806693520163455, guid: 25fb7e4629545bb409ad0c106e9cbbb6, type: 3}

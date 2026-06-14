@@ -108,6 +108,10 @@ MonoBehaviour:
   speed: 10
   damage: 1
   lifeTime: 3
+  explosionRadius: 3
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!58 &2947619378452877313
 CircleCollider2D:
   m_ObjectHideFlags: 0

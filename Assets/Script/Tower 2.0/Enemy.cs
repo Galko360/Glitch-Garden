@@ -1,7 +1,15 @@
+using System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public event Action OnStartAttacking;
+    public event Action OnStopAttacking;
+    public event Action OnAttack;
+
+    [Header("Data (optional — overrides stats below if assigned)")]
+    [SerializeField] private EnemyData data;
+
     [Header("Move")]
     [SerializeField] private float speed = 1f;
 
@@ -10,18 +18,32 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int attackDamage = 1;
     [SerializeField] private float attackCooldown = 1f;
 
+    [Header("Gold")]
+    [SerializeField] private int goldReward = 5;
+
     [Header("Raycast (Detect Defenders)")]
-    [SerializeField] private float rayDistance = 0.8f;                 // short
+    [SerializeField] private float rayDistance = 0.8f;
     [SerializeField] private Vector2 rayBoxSize = new Vector2(0.2f, 0.8f);
     [SerializeField] private LayerMask defenderLayer;
     [SerializeField] private Transform sensorOrigin;
 
     private float timer;
+    private bool isAttacking;
     private SpriteRenderer sr;
 
     private void Awake()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
+
+        // If a data SO is assigned, let it override the serialized fields
+        if (data != null)
+        {
+            hp              = data.hp;
+            speed           = data.speed;
+            attackDamage    = data.attackDamage;
+            attackCooldown  = data.attackCooldown;
+            goldReward      = data.goldReward;
+        }
     }
 
 
@@ -37,16 +59,28 @@ public class Enemy : MonoBehaviour
         if (defender != null)
         {
             // Engage: stop moving and attack on cooldown
+            if (!isAttacking)
+            {
+                isAttacking = true;
+                OnStartAttacking?.Invoke();
+            }
+
             if (timer <= 0f)
             {
-                Debug.Log($"{name} attacks {defender.name}");
                 defender.TakeDamage(attackDamage);
                 timer = attackCooldown;
+                OnAttack?.Invoke();
             }
             return;
         }
 
         // No defender ahead -> move forward
+        if (isAttacking)
+        {
+            isAttacking = false;
+            OnStopAttacking?.Invoke();
+        }
+
         transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
 
@@ -73,7 +107,11 @@ public class Enemy : MonoBehaviour
         hp -= dmg;
         GetComponent<DamageFlash>()?.Flash();
 
-        if (hp <= 0) Destroy(gameObject);
+        if (hp <= 0)
+        {
+            GoldManager.Instance?.AddGold(goldReward);
+            Destroy(gameObject);
+        }
     }
 
     private void FlashRed()

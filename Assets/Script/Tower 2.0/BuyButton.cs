@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
@@ -13,6 +14,10 @@ public class BuyButton : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private InventoryManager inventory;
+    [SerializeField] private TMP_Text buttonLabel;
+
+    [Header("Cost")]
+    [SerializeField] private int buyCost = 20;
 
     [Header("Buyable Units")]
     [SerializeField] private List<BuyableUnit> buyableUnits = new List<BuyableUnit>();
@@ -26,10 +31,22 @@ public class BuyButton : MonoBehaviour
     private BuyableUnit lastRolled;
     private int repeatCount = 0;
 
+    private void Awake()
+    {
+        if (buttonLabel != null)
+            buttonLabel.text = $"Buy ({buyCost}g)";
+    }
+
     public void Buy()
     {
         if (buyableUnits.Count == 0)
             return;
+
+        if (GoldManager.Instance != null && !GoldManager.Instance.TrySpend(buyCost))
+        {
+            Debug.Log("[BuyButton] Not enough gold.");
+            return;
+        }
 
         BuyableUnit selected = RollUnit();
 
@@ -40,7 +57,7 @@ public class BuyButton : MonoBehaviour
 
         if (!added)
         {
-            // Inventory full – no side effects
+            // Inventory full ï¿½ no side effects
             return;
         }
 

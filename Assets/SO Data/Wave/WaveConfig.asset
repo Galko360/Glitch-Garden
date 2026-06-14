@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6004174e59dc6a246af7ce2fc194ed59, type: 3}
   m_Name: WaveConfig
   m_EditorClassIdentifier: Assembly-CSharp::WaveConfig
-  enemyCount: 40
-  spawnInterval: 4
-  roundRobin: 1
-  possibleEnemies: []
+  enemyCount: 10
+  spawnInterval: 5
+  roundRobin: 0
+  possibleEnemies:
+  - {fileID: 11400000, guid: 2e8b8ce4086594f4caa7090db37881e3, type: 2}
