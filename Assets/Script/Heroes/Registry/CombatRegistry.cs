@@ -1,6 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: CombatRegistry is not yet wired up — no script calls Register/Unregister.
+// Intended use: ranged units and enemies register themselves on spawn so attackers
+// can query GetClosestEnemyInRow / GetClosestDefenderAhead instead of using Physics2D raycasts.
+// To activate: call RegisterDefender/RegisterEnemy from UnitCombat.Start and Enemy.Start,
+// and call Unregister from their OnDeath/OnDestroy.
 public class CombatRegistry : MonoBehaviour
 {
     public static CombatRegistry Instance { get; private set; }
