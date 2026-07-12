@@ -2296,7 +2296,7 @@ MonoBehaviour:
   lanePrefab: {fileID: 7935027289431823296, guid: b858b4a87eda64740bea18d6564c2261, type: 3}
   laneCount: 0
   boardOrigin: {fileID: 704962291}
-  laneSpacing: 1.15
+  laneSpacing: 1.5
 --- !u!4 &704962291
 Transform:
   m_ObjectHideFlags: 0
