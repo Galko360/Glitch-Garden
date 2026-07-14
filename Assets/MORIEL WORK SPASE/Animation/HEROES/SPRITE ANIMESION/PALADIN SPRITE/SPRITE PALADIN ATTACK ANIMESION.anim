@@ -421,13 +421,18 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
+<<<<<<<< HEAD:Assets/MORIEL WORK SPASE/Animation/HEROES/SPRITE ANIMESION/PALADIN SPRITE/SPRITE PALADIN ATTACK ANIMESION.anim
         value: -1
+========
+        value: 2
+>>>>>>>> PocWork:Assets/MORIEL WORK SPASE/ANIMESIONS/HEROES/SPRITE ANIMESION/PALADIN SPRITE/SPRITE PALADIN ATTACK ANIMESION.anim
         inSlope: 0
         outSlope: 0
         tangentMode: 69
         weightedMode: 0
         inWeight: 0
         outWeight: 0
+<<<<<<<< HEAD:Assets/MORIEL WORK SPASE/Animation/HEROES/SPRITE ANIMESION/PALADIN SPRITE/SPRITE PALADIN ATTACK ANIMESION.anim
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -444,6 +449,12 @@ AnimationClip:
         time: 0
         value: 0
         inSlope: 0
+========
+      - serializedVersion: 3
+        time: 0.96666664
+        value: 2
+        inSlope: -0
+>>>>>>>> PocWork:Assets/MORIEL WORK SPASE/ANIMESIONS/HEROES/SPRITE ANIMESION/PALADIN SPRITE/SPRITE PALADIN ATTACK ANIMESION.anim
         outSlope: 0
         tangentMode: 69
         weightedMode: 0
@@ -453,7 +464,11 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SortingOrder
+<<<<<<<< HEAD:Assets/MORIEL WORK SPASE/Animation/HEROES/SPRITE ANIMESION/PALADIN SPRITE/SPRITE PALADIN ATTACK ANIMESION.anim
     path: PALADIN BODY
+========
+    path: PALADIN SHILDE
+>>>>>>>> PocWork:Assets/MORIEL WORK SPASE/ANIMESIONS/HEROES/SPRITE ANIMESION/PALADIN SPRITE/SPRITE PALADIN ATTACK ANIMESION.anim
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -538,6 +553,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
+<<<<<<<< HEAD:Assets/MORIEL WORK SPASE/Animation/HEROES/SPRITE ANIMESION/PALADIN SPRITE/SPRITE PALADIN ATTACK ANIMESION.anim
       path: 1227848738
       attribute: 3762991556
       script: {fileID: 0}
@@ -548,6 +564,9 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 1504258969
+========
+      path: 1298663475
+>>>>>>>> PocWork:Assets/MORIEL WORK SPASE/ANIMESIONS/HEROES/SPRITE ANIMESION/PALADIN SPRITE/SPRITE PALADIN ATTACK ANIMESION.anim
       attribute: 3762991556
       script: {fileID: 0}
       typeID: 212
@@ -1897,17 +1916,34 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
+<<<<<<<< HEAD:Assets/MORIEL WORK SPASE/Animation/HEROES/SPRITE ANIMESION/PALADIN SPRITE/SPRITE PALADIN ATTACK ANIMESION.anim
         value: -1
+========
+        value: 2
+>>>>>>>> PocWork:Assets/MORIEL WORK SPASE/ANIMESIONS/HEROES/SPRITE ANIMESION/PALADIN SPRITE/SPRITE PALADIN ATTACK ANIMESION.anim
         inSlope: 0
         outSlope: 0
         tangentMode: 69
         weightedMode: 0
         inWeight: 0
         outWeight: 0
+<<<<<<<< HEAD:Assets/MORIEL WORK SPASE/Animation/HEROES/SPRITE ANIMESION/PALADIN SPRITE/SPRITE PALADIN ATTACK ANIMESION.anim
+========
+      - serializedVersion: 3
+        time: 0.96666664
+        value: 2
+        inSlope: -0
+        outSlope: 0
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+>>>>>>>> PocWork:Assets/MORIEL WORK SPASE/ANIMESIONS/HEROES/SPRITE ANIMESION/PALADIN SPRITE/SPRITE PALADIN ATTACK ANIMESION.anim
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SortingOrder
+<<<<<<<< HEAD:Assets/MORIEL WORK SPASE/Animation/HEROES/SPRITE ANIMESION/PALADIN SPRITE/SPRITE PALADIN ATTACK ANIMESION.anim
     path: CLOCK
     classID: 212
     script: {fileID: 0}
@@ -1930,6 +1966,9 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_SortingOrder
     path: PALADIN BODY
+========
+    path: PALADIN SHILDE
+>>>>>>>> PocWork:Assets/MORIEL WORK SPASE/ANIMESIONS/HEROES/SPRITE ANIMESION/PALADIN SPRITE/SPRITE PALADIN ATTACK ANIMESION.anim
     classID: 212
     script: {fileID: 0}
     flags: 0
