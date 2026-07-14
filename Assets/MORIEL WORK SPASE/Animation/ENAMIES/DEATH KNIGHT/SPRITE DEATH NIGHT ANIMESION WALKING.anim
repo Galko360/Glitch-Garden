@@ -376,11 +376,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-<<<<<<<< HEAD:Assets/MORIEL WORK SPASE/Animation/ENAMIES/DEATH KNIGHT/SPRITE DEATH NIGHT ANIMESION WALKING.anim
         value: 1
-========
-        value: -2
->>>>>>>> PocWork:Assets/MORIEL WORK SPASE/ANIMESIONS/ENAMIES/DEATH KNIGHT/SPRITE DEATH NIGHT ANIMESION WALKING.anim
         inSlope: 0
         outSlope: 0
         tangentMode: 69
@@ -391,11 +387,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SortingOrder
-<<<<<<<< HEAD:Assets/MORIEL WORK SPASE/Animation/ENAMIES/DEATH KNIGHT/SPRITE DEATH NIGHT ANIMESION WALKING.anim
     path: DEATH KNIGHT BODY
-========
-    path: DEATH KNIGHT RIGHT LEG
->>>>>>>> PocWork:Assets/MORIEL WORK SPASE/ANIMESIONS/ENAMIES/DEATH KNIGHT/SPRITE DEATH NIGHT ANIMESION WALKING.anim
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -480,11 +472,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-<<<<<<<< HEAD:Assets/MORIEL WORK SPASE/Animation/ENAMIES/DEATH KNIGHT/SPRITE DEATH NIGHT ANIMESION WALKING.anim
       path: 3366868406
-========
-      path: 2548663714
->>>>>>>> PocWork:Assets/MORIEL WORK SPASE/ANIMESIONS/ENAMIES/DEATH KNIGHT/SPRITE DEATH NIGHT ANIMESION WALKING.anim
       attribute: 3762991556
       script: {fileID: 0}
       typeID: 212
@@ -1699,11 +1687,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-<<<<<<<< HEAD:Assets/MORIEL WORK SPASE/Animation/ENAMIES/DEATH KNIGHT/SPRITE DEATH NIGHT ANIMESION WALKING.anim
         value: 1
-========
-        value: -2
->>>>>>>> PocWork:Assets/MORIEL WORK SPASE/ANIMESIONS/ENAMIES/DEATH KNIGHT/SPRITE DEATH NIGHT ANIMESION WALKING.anim
         inSlope: 0
         outSlope: 0
         tangentMode: 69
@@ -1714,11 +1698,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_SortingOrder
-<<<<<<<< HEAD:Assets/MORIEL WORK SPASE/Animation/ENAMIES/DEATH KNIGHT/SPRITE DEATH NIGHT ANIMESION WALKING.anim
     path: DEATH KNIGHT BODY
-========
-    path: DEATH KNIGHT RIGHT LEG
->>>>>>>> PocWork:Assets/MORIEL WORK SPASE/ANIMESIONS/ENAMIES/DEATH KNIGHT/SPRITE DEATH NIGHT ANIMESION WALKING.anim
     classID: 212
     script: {fileID: 0}
     flags: 0
