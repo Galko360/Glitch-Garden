@@ -7,9 +7,9 @@ public class Enemy : MonoBehaviour
     public event Action OnStartAttacking;
     public event Action OnStopAttacking;
     public event Action OnAttack;
-    public event Action OnDeath; // Added to properly bridge to EnemyAnimator
+    public event Action OnDeath;
 
-    [Header("Data (optional — overrides stats below if assigned)")]
+    [Header("Data (optional)")]
     [SerializeField] private EnemyData data;
 
     [Header("Move")]
@@ -20,18 +20,19 @@ public class Enemy : MonoBehaviour
     [StatBar(20)][SerializeField] private int attackDamage = 1;
     [SerializeField] private float attackCooldown = 1f;
 
-    [Header("Gold")]
+    [Header("Gold Settings")]
     [SerializeField] private int goldReward = 5;
+    [SerializeField] private GameObject coinPrefab;
+
+    [Header("Death Settings")]
+    [SerializeField] private float fadeDuration = 1.5f;
+    [SerializeField] private float delayBeforeFade = 0.5f;
 
     [Header("Raycast (Detect Defenders)")]
     [SerializeField] private float rayDistance = 0.8f;
     [SerializeField] private Vector2 rayBoxSize = new Vector2(0.2f, 0.8f);
     [SerializeField] private LayerMask defenderLayer;
     [SerializeField] private Transform sensorOrigin;
-
-    [Header("Death Settings")]
-    [SerializeField] private float fadeDuration = 1.5f;     // Time it takes to fade to 0 alpha
-    [SerializeField] private float delayBeforeFade = 0.5f;  // Time to let the death animation play
 
     private float timer;
     private bool isAttacking;
@@ -121,18 +122,30 @@ public class Enemy : MonoBehaviour
     {
         isDead = true;
 
-        // 1. Immediately fire the death event to trigger the animation
         OnDeath?.Invoke();
 
-        // 2. Award gold instantly
-        GoldManager.Instance?.AddGold(goldReward);
+        SpawnCoin();
 
-        // 3. Disable physical interactions immediately
         var collider = GetComponent<Collider2D>();
         if (collider != null) collider.enabled = false;
 
-        // 4. Kick off the fading timeline
         StartCoroutine(DeathSequenceRoutine());
+    }
+
+    private void SpawnCoin()
+    {
+        if (coinPrefab == null)
+        {
+            GoldManager.Instance?.AddGold(goldReward);
+            return;
+        }
+
+        GameObject spawnedCoin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
+        if (spawnedCoin.TryGetComponent<Coin>(out var coinScript))
+        {
+            // Simply pass the gold amount; Coin handles its trajectory and target
+            coinScript.Launch(goldReward);
+        }
     }
 
     private IEnumerator DeathSequenceRoutine()
@@ -160,20 +173,6 @@ public class Enemy : MonoBehaviour
         }
 
         Destroy(gameObject);
-    }
-
-    private void FlashRed()
-    {
-        if (sr == null || isDead) return;
-        StopAllCoroutines();
-        StartCoroutine(FlashRoutine());
-    }
-
-    private IEnumerator FlashRoutine()
-    {
-        sr.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        sr.color = Color.white;
     }
 
 #if UNITY_EDITOR
