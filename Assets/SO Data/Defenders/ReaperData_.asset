@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   id: 
   prefab: {fileID: 1771463465841459968, guid: 5e85eb9c004b8cb4087f568bb327a36b, type: 3}
-  icon: {fileID: -2413806693520163455, guid: 25fb7e4629545bb409ad0c106e9cbbb6, type: 3}
+  icon: {fileID: -2791608531362129376, guid: f0b80874dcc34e844a3f2151711aa34c, type: 3}
