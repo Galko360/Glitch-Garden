@@ -258,6 +258,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   sensorOrigin: {fileID: 2118292326508160509}
+  fadeDuration: 1.5
+  delayBeforeFade: 0.5
 --- !u!114 &5589992409979068205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +316,7 @@ MonoBehaviour:
   animator: {fileID: 7338562722787395531}
   isEngagedParam: IsEngaged
   attackTrigger: Attack
+  deathTrigger: Death
 --- !u!1 &2543285010520164579
 GameObject:
   m_ObjectHideFlags: 0

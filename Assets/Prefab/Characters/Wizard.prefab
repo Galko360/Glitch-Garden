@@ -196,6 +196,8 @@ MonoBehaviour:
   hp: 50
   maxHp: 50
   attackCooldown: 1.5
+  fadeDuration: 1.5
+  delayBeforeFade: 0.5
 --- !u!114 &1299039007970318267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedAttacker
   damage: 10
-  bulletPrefab: {fileID: -3526071524381789497, guid: 44219911d59f0524fa755159c725adc7, type: 3}
+  bulletPrefab: {fileID: -3526071524381789497, guid: 22424c2721e6fc24d9df79710c55056e, type: 3}
   firePoint: {fileID: 3838721011827553075}
   sensorOrigin: {fileID: 4832756863520246721}
   boxSize: {x: 0.2, y: 0.8}

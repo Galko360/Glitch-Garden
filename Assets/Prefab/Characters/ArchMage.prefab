@@ -211,6 +211,8 @@ MonoBehaviour:
   hp: 75
   maxHp: 75
   attackCooldown: 3
+  fadeDuration: 1.5
+  delayBeforeFade: 0.5
 --- !u!114 &-4603453113182202911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MultiFireballAttacker
   damage: 10
-  fireballPrefab: {fileID: -3526071524381789497, guid: c304c8639be48824d86ecdc7ba51dbe9, type: 3}
+  fireballPrefab: {fileID: -3526071524381789497, guid: 22424c2721e6fc24d9df79710c55056e, type: 3}
   firePoint: {fileID: 3838721011827553075}
   fireballCount: 3
   spreadAngle: 30

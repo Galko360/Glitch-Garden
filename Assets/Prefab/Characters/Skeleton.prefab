@@ -550,6 +550,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5880151219417440967}
   - component: {fileID: 2929819713777976460}
+  - component: {fileID: -6735499624595245064}
+  - component: {fileID: -6354430420139427521}
+  - component: {fileID: -3263915486623070332}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -602,6 +605,62 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-6735499624595245064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5830268115174237589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51392ce3c522d8f4f804449f98042e0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimator
+  animator: {fileID: 2929819713777976460}
+  isEngagedParam: IsEngaged
+  attackTrigger: Attack
+  deathTrigger: Death
+--- !u!114 &-6354430420139427521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5830268115174237589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39b95da696fdd64caf38cbb12ef769f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  data: {fileID: 0}
+  speed: 0.7
+  hp: 20
+  attackDamage: 10
+  attackCooldown: 1.4
+  goldReward: 5
+  rayDistance: 1
+  rayBoxSize: {x: 1, y: 0.8}
+  defenderLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  sensorOrigin: {fileID: 2118292326508160509, guid: ed96a1dd60ad1ae41870c0d84ce644fd, type: 3}
+  fadeDuration: 1.5
+  delayBeforeFade: 0.5
+--- !u!114 &-3263915486623070332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5830268115174237589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf6e357ce3678a2449cec734e8f6f219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashTime: 0.08
 --- !u!1 &7741291760038102435
 GameObject:
   m_ObjectHideFlags: 0
