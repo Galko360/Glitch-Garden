@@ -121,7 +121,7 @@ Transform:
   m_GameObject: {fileID: 4539887198496878483}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.631, y: 0.483, z: 0}
+  m_LocalPosition: {x: -10, y: -10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -250,6 +250,8 @@ MonoBehaviour:
   hp: 150
   maxHp: 150
   attackCooldown: 2
+  fadeDuration: 1.5
+  delayBeforeFade: 0.5
 --- !u!114 &7795976379293496308
 MonoBehaviour:
   m_ObjectHideFlags: 0

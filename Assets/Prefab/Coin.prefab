@@ -136,6 +136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Coin
   moneyBagTag: MoneyBag
-  target: {fileID: 5665571026981971861, guid: 833ede71f8879f845b0731a4e455f842, type: 3}
+  target: {fileID: 0}
   travelDuration: 2
   arcControl: {x: 0, y: 2}

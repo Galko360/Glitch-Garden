@@ -11,6 +11,7 @@ public class Coin : MonoBehaviour
 
     private int value;
 
+
     private void Awake()
     {
         // Auto-find MoneyBag target if not manually assigned in inspector
