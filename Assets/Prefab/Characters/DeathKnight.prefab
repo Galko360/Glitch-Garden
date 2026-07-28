@@ -252,6 +252,12 @@ MonoBehaviour:
   attackDamage: 20
   attackCooldown: 1.4
   goldReward: 5
+  coinPrefab: {fileID: 4714269164434839061, guid: 9ffad92cc2a27824f96c82ef8628775c, type: 3}
+  moneyBagTarget: {fileID: 5665571026981971861, guid: 833ede71f8879f845b0731a4e455f842, type: 3}
+  coinFlyDuration: 5
+  coinArcControl: {x: 0, y: 2}
+  fadeDuration: 1.5
+  delayBeforeFade: 0.5
   rayDistance: 1
   rayBoxSize: {x: 1, y: 0.8}
   defenderLayer:
@@ -314,6 +320,7 @@ MonoBehaviour:
   animator: {fileID: 7338562722787395531}
   isEngagedParam: IsEngaged
   attackTrigger: Attack
+  deathTrigger: Death
 --- !u!1 &2543285010520164579
 GameObject:
   m_ObjectHideFlags: 0

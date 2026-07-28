@@ -5,12 +5,12 @@ public class EnemyAnimator : MonoBehaviour
     [SerializeField] private Animator animator;
 
     [Header("Parameter Names")]
-    [SerializeField] private string isEngagedParam  = "IsEngaged";   // bool - stopped to fight
-    [SerializeField] private string attackTrigger   = "Attack";       // trigger - plays attack swing
+    [SerializeField] private string isEngagedParam = "IsEngaged";
+    [SerializeField] private string attackTrigger = "Attack";
+    [SerializeField] private string deathTrigger = "Death";
 
     private Enemy enemy;
-
-    // -------------------------------------------------
+    private bool isDead = false;
 
     private void Awake()
     {
@@ -23,21 +23,45 @@ public class EnemyAnimator : MonoBehaviour
     {
         if (enemy == null) return;
         enemy.OnStartAttacking += HandleEngage;
-        enemy.OnStopAttacking  += HandleDisengage;
-        enemy.OnAttack         += HandleAttack;
+        enemy.OnStopAttacking += HandleDisengage;
+        enemy.OnAttack += HandleAttack;
+        enemy.OnDeath += HandleDeath; // Listens to the newly added event
     }
 
     private void OnDisable()
     {
         if (enemy == null) return;
         enemy.OnStartAttacking -= HandleEngage;
-        enemy.OnStopAttacking  -= HandleDisengage;
-        enemy.OnAttack         -= HandleAttack;
+        enemy.OnStopAttacking -= HandleDisengage;
+        enemy.OnAttack -= HandleAttack;
+        enemy.OnDeath -= HandleDeath;
     }
 
-    // -------------------------------------------------
+    private void HandleEngage()
+    {
+        if (isDead) return;
+        animator?.SetBool(isEngagedParam, true);
+    }
 
-    private void HandleEngage()    => animator?.SetBool(isEngagedParam, true);
-    private void HandleDisengage() => animator?.SetBool(isEngagedParam, false);
-    private void HandleAttack()    => animator?.SetTrigger(attackTrigger);
+    private void HandleDisengage()
+    {
+        if (isDead) return;
+        animator?.SetBool(isEngagedParam, false);
+    }
+
+    private void HandleAttack()
+    {
+        if (isDead) return;
+        animator?.SetTrigger(attackTrigger);
+    }
+
+    private void HandleDeath()
+    {
+        if (isDead) return;
+        isDead = true;
+
+        // Instantly shut off walking/combat transitions, then smash the death trigger
+        animator?.SetBool(isEngagedParam, false);
+        animator?.SetTrigger(deathTrigger);
+    }
 }

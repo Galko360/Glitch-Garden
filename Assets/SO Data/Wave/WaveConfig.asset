@@ -17,3 +17,4 @@ MonoBehaviour:
   roundRobin: 0
   possibleEnemies:
   - {fileID: 11400000, guid: 2e8b8ce4086594f4caa7090db37881e3, type: 2}
+  - {fileID: 11400000, guid: 97e0edc7d103d0e45b5af3b917284b26, type: 2}
