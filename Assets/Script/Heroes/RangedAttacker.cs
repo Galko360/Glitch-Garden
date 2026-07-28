@@ -20,18 +20,21 @@ public class RangedAttacker : MonoBehaviour, IAttackBehavior
 
     public void Init(UnitCombat owner) { }
 
-    public bool TryAttack()
+    public bool HasTarget()
     {
         if (bulletPrefab == null) return false;
+        return Scan() != null;
+    }
 
-        Enemy target = Scan();
-        if (target == null) return false;
+    public void ExecuteAttack()
+    {
+        if (bulletPrefab == null) return;
+        if (Scan() == null) return;
 
         Transform spawn = firePoint != null ? firePoint : transform;
         Bullet b = Instantiate(bulletPrefab, spawn.position, Quaternion.identity);
         b.damage = damage;
         b.SetDirection(Vector2.left);
-        return true;
     }
 
     private Enemy Scan()

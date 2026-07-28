@@ -16,13 +16,12 @@ public class MeleeAttacker : MonoBehaviour, IAttackBehavior
 
     public void Init(UnitCombat owner) { }
 
-    public bool TryAttack()
+    public bool HasTarget() => Scan() != null;
+
+    public void ExecuteAttack()
     {
         Enemy target = Scan();
-        if (target == null) return false;
-
-        target.TakeDamage(damage);
-        return true;
+        target?.TakeDamage(damage);
     }
 
     private Enemy Scan()

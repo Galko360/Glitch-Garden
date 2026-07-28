@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50a162eedd4265449a68185e27094394, type: 3}
-  m_Name: EnemyData_DeathKnight 2
+  m_Name: EnemyData_DarkMage
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  id: Death Knight
-  prefab: {fileID: 9085674948743521744, guid: ed96a1dd60ad1ae41870c0d84ce644fd, type: 3}
-  icon: {fileID: -7339290641555315788, guid: 315051128f814e94aadba32f79462327, type: 3}
+  id: DarkMage
+  prefab: {fileID: -3552189298952635934, guid: a72cf28d2504d9740935f4d09775c541, type: 3}
+  icon: {fileID: 8302129328904623997, guid: a6f2489f11c09754c9414320f3a9a914, type: 3}
   hp: 3
-  speed: 1
   attackDamage: 1
+  speed: 1
   attackCooldown: 1
   goldReward: 5

@@ -23,17 +23,18 @@ public class MultiFireballAttacker : MonoBehaviour, IAttackBehavior
 
     public void Init(UnitCombat owner) { }
 
-    public bool TryAttack()
+    public bool HasTarget()
     {
         if (fireballPrefab == null) return false;
+        return Physics2D.OverlapCircle(transform.position, range, enemyLayer) != null;
+    }
 
-        // Only fire if there's at least one enemy in range
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, range, enemyLayer);
-        if (hit == null) return false;
+    public void ExecuteAttack()
+    {
+        if (fireballPrefab == null) return;
+        if (Physics2D.OverlapCircle(transform.position, range, enemyLayer) == null) return;
 
         Transform spawnPoint = firePoint != null ? firePoint : transform;
-
-        // Spread fireballs evenly across the spread angle
         float startAngle = -spreadAngle / 2f;
         float step = fireballCount > 1 ? spreadAngle / (fireballCount - 1) : 0f;
 
@@ -46,8 +47,6 @@ public class MultiFireballAttacker : MonoBehaviour, IAttackBehavior
             b.damage = damage;
             b.SetDirection(dir);
         }
-
-        return true;
     }
 
     // -------------------------------------------------

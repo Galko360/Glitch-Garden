@@ -255,6 +255,8 @@ MonoBehaviour:
   coinPrefab: {fileID: 4714269164434839061, guid: 9ffad92cc2a27824f96c82ef8628775c, type: 3}
   fadeDuration: 1.5
   delayBeforeFade: 0.5
+  projectilePrefab: {fileID: 0}
+  firePoint: {fileID: 0}
   rayDistance: 1
   rayBoxSize: {x: 1, y: 0.8}
   defenderLayer:
@@ -318,6 +320,8 @@ MonoBehaviour:
   isEngagedParam: IsEngaged
   attackTrigger: Attack
   deathTrigger: Death
+  attackSpeedParam: AttackSpeed
+  attackClipLength: 1
 --- !u!1 &2543285010520164579
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,8 +440,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1934783223980400372, guid: a47a82d12c8407f4c96b3e371c068ae7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8131909212684639277}
   m_SourcePrefab: {fileID: 100100000, guid: a47a82d12c8407f4c96b3e371c068ae7, type: 3}
+--- !u!1 &2880028025869494572 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1934783223980400372, guid: a47a82d12c8407f4c96b3e371c068ae7, type: 3}
+  m_PrefabInstance: {fileID: 4408550336267188184}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8131909212684639277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2880028025869494572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312301693217c2d409f95fbbf001d043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationEventRelay
 --- !u!95 &7338562722787395531 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6411330119424077843, guid: a47a82d12c8407f4c96b3e371c068ae7, type: 3}

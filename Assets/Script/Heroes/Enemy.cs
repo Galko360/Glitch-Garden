@@ -32,6 +32,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemyBullet projectilePrefab;
     [SerializeField] private Transform firePoint;
 
+    public float AttackCooldown => attackCooldown;
+
     [Header("Raycast (Detect Defenders)")]
     [SerializeField] private float rayDistance = 0.8f;
     [SerializeField] private Vector2 rayBoxSize = new Vector2(0.2f, 0.8f);
@@ -75,13 +77,9 @@ public class Enemy : MonoBehaviour
 
             if (timer <= 0f)
             {
-                if (projectilePrefab != null)
-                    FireProjectile();
-                else
-                    defender.TakeDamage(attackDamage);
-
                 timer = attackCooldown;
                 OnAttack?.Invoke();
+                // damage/projectile is dealt by Animation Event calling OnAttackHit()
             }
             return;
         }
@@ -111,6 +109,20 @@ public class Enemy : MonoBehaviour
         if (!hit) return null;
 
         return hit.collider.GetComponentInParent<UnitCombat>();
+    }
+
+    // Called by Animation Event at the hit frame (melee and ranged)
+    public void OnAttackHit()
+    {
+        if (isDead) return;
+
+        if (projectilePrefab != null)
+            FireProjectile();
+        else
+        {
+            UnitCombat defender = ScanForDefender();
+            defender?.TakeDamage(attackDamage);
+        }
     }
 
     private void FireProjectile()
