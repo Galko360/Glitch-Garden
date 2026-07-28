@@ -196,9 +196,10 @@ public class Enemy : MonoBehaviour
     {
         Transform o = sensorOrigin != null ? sensorOrigin : transform;
         Gizmos.color = projectilePrefab != null ? Color.cyan : Color.yellow;
+        // Width = rayBoxSize.x + rayDistance to match the actual BoxCast sweep area
         Gizmos.DrawWireCube(
             o.position + Vector3.right * rayDistance * 0.5f,
-            new Vector3(rayDistance, rayBoxSize.y, 0f)
+            new Vector3(rayDistance + rayBoxSize.x, rayBoxSize.y, 0f)
         );
     }
 #endif

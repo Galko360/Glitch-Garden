@@ -568,10 +568,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5830268115174237589}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.98, y: -6.82, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: -0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5083004438489055714}
   - {fileID: 4119496449011385164}
@@ -582,7 +582,7 @@ Transform:
   - {fileID: 7617769115406189614}
   - {fileID: 364226637758989545}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2929819713777976460
 Animator:
   serializedVersion: 7
@@ -639,14 +639,15 @@ MonoBehaviour:
   attackDamage: 10
   attackCooldown: 1.4
   goldReward: 5
+  coinPrefab: {fileID: 0}
+  fadeDuration: 1.5
+  delayBeforeFade: 0.5
   rayDistance: 1
   rayBoxSize: {x: 1, y: 0.8}
   defenderLayer:
     serializedVersion: 2
     m_Bits: 64
   sensorOrigin: {fileID: 2118292326508160509, guid: ed96a1dd60ad1ae41870c0d84ce644fd, type: 3}
-  fadeDuration: 1.5
-  delayBeforeFade: 0.5
 --- !u!114 &-3263915486623070332
 MonoBehaviour:
   m_ObjectHideFlags: 0
