@@ -31,7 +31,6 @@ public class Enemy : MonoBehaviour
     [Header("Ranged Attack (leave empty for melee)")]
     [SerializeField] private EnemyBullet projectilePrefab;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private float rangedDetectionRange = 5f;
 
     [Header("Raycast (Detect Defenders)")]
     [SerializeField] private float rayDistance = 0.8f;
@@ -100,14 +99,12 @@ public class Enemy : MonoBehaviour
     {
         if (sensorOrigin == null) sensorOrigin = transform;
 
-        float scanRange = projectilePrefab != null ? rangedDetectionRange : rayDistance;
-
         RaycastHit2D hit = Physics2D.BoxCast(
             sensorOrigin.position,
             rayBoxSize,
             0f,
             Vector2.right,
-            scanRange,
+            rayDistance,
             defenderLayer
         );
 
@@ -195,14 +192,13 @@ public class Enemy : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         Transform o = sensorOrigin != null ? sensorOrigin : transform;
-        float scanRange = projectilePrefab != null ? rangedDetectionRange : rayDistance;
         Gizmos.color = projectilePrefab != null ? Color.cyan : Color.yellow;
         Gizmos.DrawWireCube(
-            o.position + Vector3.right * scanRange * 0.5f,
-            new Vector3(scanRange, rayBoxSize.y, 0f)
+            o.position + Vector3.right * rayDistance * 0.5f,
+            new Vector3(rayDistance, rayBoxSize.y, 0f)
         );
     }
 #endif
