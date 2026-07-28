@@ -28,6 +28,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float fadeDuration = 1.5f;
     [SerializeField] private float delayBeforeFade = 0.5f;
 
+    [Header("Ranged Attack (leave empty for melee)")]
+    [SerializeField] private EnemyBullet projectilePrefab;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private float rangedDetectionRange = 5f;
+
     [Header("Raycast (Detect Defenders)")]
     [SerializeField] private float rayDistance = 0.8f;
     [SerializeField] private Vector2 rayBoxSize = new Vector2(0.2f, 0.8f);
@@ -71,7 +76,11 @@ public class Enemy : MonoBehaviour
 
             if (timer <= 0f)
             {
-                defender.TakeDamage(attackDamage);
+                if (projectilePrefab != null)
+                    FireProjectile();
+                else
+                    defender.TakeDamage(attackDamage);
+
                 timer = attackCooldown;
                 OnAttack?.Invoke();
             }
@@ -91,18 +100,28 @@ public class Enemy : MonoBehaviour
     {
         if (sensorOrigin == null) sensorOrigin = transform;
 
+        float scanRange = projectilePrefab != null ? rangedDetectionRange : rayDistance;
+
         RaycastHit2D hit = Physics2D.BoxCast(
             sensorOrigin.position,
             rayBoxSize,
             0f,
             Vector2.right,
-            rayDistance,
+            scanRange,
             defenderLayer
         );
 
         if (!hit) return null;
 
         return hit.collider.GetComponentInParent<UnitCombat>();
+    }
+
+    private void FireProjectile()
+    {
+        Transform spawn = firePoint != null ? firePoint : transform;
+        EnemyBullet bullet = Instantiate(projectilePrefab, spawn.position, Quaternion.identity);
+        bullet.damage = attackDamage;
+        bullet.SetDirection(Vector2.right);
     }
 
     public void TakeDamage(int dmg)
@@ -179,10 +198,11 @@ public class Enemy : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Transform o = sensorOrigin != null ? sensorOrigin : transform;
-        Gizmos.color = Color.yellow;
+        float scanRange = projectilePrefab != null ? rangedDetectionRange : rayDistance;
+        Gizmos.color = projectilePrefab != null ? Color.cyan : Color.yellow;
         Gizmos.DrawWireCube(
-            o.position + Vector3.right * rayDistance * 0.5f,
-            new Vector3(rayBoxSize.x, rayBoxSize.y, 0f)
+            o.position + Vector3.right * scanRange * 0.5f,
+            new Vector3(scanRange, rayBoxSize.y, 0f)
         );
     }
 #endif
