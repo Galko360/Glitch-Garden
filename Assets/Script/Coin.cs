@@ -39,15 +39,14 @@ public class Coin : MonoBehaviour
     {
         discoveredCheckpoints.Clear();
 
-        // Find all objects in the scene
-        GameObject[] allObjects = GameObject.FindGameObjectsWithTag("Untagged"); // or search via name pattern below
-
-        // Better approach: search all active objects in scene and match names
         List<Transform> foundList = new List<Transform>();
 
-        foreach (var obj in FindObjectsOfType<GameObject>())
+        // Modern, performance-friendly API call matching current Unity standards
+        GameObject[] allObjects = Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None);
+
+        foreach (var obj in allObjects)
         {
-            if (obj.name.StartsWith(checkpointPrefix))
+            if (obj != null && obj.name.StartsWith(checkpointPrefix))
             {
                 foundList.Add(obj.transform);
             }
@@ -66,8 +65,7 @@ public class Coin : MonoBehaviour
     private int ExtractNumber(string name)
     {
         string numberOnly = System.Text.RegularExpressions.Regex.Match(name, @"\d+").Value;
-        int result = 0;
-        int.TryParse(numberOnly, out result);
+        int.TryParse(numberOnly, out int result);
         return result;
     }
 
