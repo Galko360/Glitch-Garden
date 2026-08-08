@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50a162eedd4265449a68185e27094394, type: 3}
+  m_Name: EnemyData_Ghost
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  id: Death Knight
+  prefab: {fileID: 9085674948743521744, guid: ed96a1dd60ad1ae41870c0d84ce644fd, type: 3}
+  icon: {fileID: -7339290641555315788, guid: 315051128f814e94aadba32f79462327, type: 3}
+  hp: 3
+  speed: 1
+  attackDamage: 1
+  attackCooldown: 1
+  goldReward: 5

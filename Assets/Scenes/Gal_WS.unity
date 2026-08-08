@@ -305,7 +305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -89.3999, y: -9.299927}
+  m_AnchoredPosition: {x: -89.3999, y: -9.299805}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &12414891
@@ -4596,7 +4596,7 @@ MonoBehaviour:
   waves:
   - {fileID: 11400000, guid: 4b288f46b11961d4999789bd668b5dec, type: 2}
   autoStart: 1
-  prepDuration: 20
+  prepDuration: 0
   breakDuration: 10
   baseEnemyCount: 10
   enemyCountIncreasePerWave: 3

@@ -196,6 +196,8 @@ MonoBehaviour:
   hp: 50
   maxHp: 50
   attackCooldown: 1.5
+  fadeDuration: 1.5
+  delayBeforeFade: 0.5
 --- !u!114 &1299039007970318267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedAttacker
   damage: 10
-  bulletPrefab: {fileID: -3526071524381789497, guid: 44219911d59f0524fa755159c725adc7, type: 3}
+  bulletPrefab: {fileID: -3526071524381789497, guid: 22424c2721e6fc24d9df79710c55056e, type: 3}
   firePoint: {fileID: 3838721011827553075}
   sensorOrigin: {fileID: 4832756863520246721}
   boxSize: {x: 0.2, y: 0.8}
@@ -247,6 +249,8 @@ MonoBehaviour:
   attackTrigger: Attack
   hitTrigger: Hit
   deathTrigger: Death
+  attackSpeedParam: AttackSpeed
+  attackClipLength: 1
 --- !u!1 &2594713286220759596
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,13 +511,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 890839512469564545, guid: 84bde99856eccfa4d97e61a33bf5eadd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2041118706941573009}
   m_SourcePrefab: {fileID: 100100000, guid: 84bde99856eccfa4d97e61a33bf5eadd, type: 3}
 --- !u!4 &493525099637743955 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 238223870153867187, guid: 84bde99856eccfa4d97e61a33bf5eadd, type: 3}
   m_PrefabInstance: {fileID: 402805189841493728}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &705913946557575777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 890839512469564545, guid: 84bde99856eccfa4d97e61a33bf5eadd, type: 3}
+  m_PrefabInstance: {fileID: 402805189841493728}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2041118706941573009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705913946557575777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312301693217c2d409f95fbbf001d043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationEventRelay
 --- !u!95 &7747367361654948473 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7931719373201972377, guid: 84bde99856eccfa4d97e61a33bf5eadd, type: 3}
