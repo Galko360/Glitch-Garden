@@ -305,7 +305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -89.3999, y: -9.299927}
+  m_AnchoredPosition: {x: -89.3999, y: -9.299805}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &12414891
@@ -7550,17 +7550,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1553061921093274161, guid: 833ede71f8879f845b0731a4e455f842, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553061921093274161, guid: 833ede71f8879f845b0731a4e455f842, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.17
+      objectReference: {fileID: 0}
     - target: {fileID: 4273361466768162740, guid: 833ede71f8879f845b0731a4e455f842, type: 3}
       propertyPath: m_SortingOrder
       value: 178
       objectReference: {fileID: 0}
     - target: {fileID: 5665571026981971861, guid: 833ede71f8879f845b0731a4e455f842, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.56
+      value: -3.26
       objectReference: {fileID: 0}
     - target: {fileID: 5665571026981971861, guid: 833ede71f8879f845b0731a4e455f842, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.31
+      value: -4.09
       objectReference: {fileID: 0}
     - target: {fileID: 5665571026981971861, guid: 833ede71f8879f845b0731a4e455f842, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7601,6 +7609,10 @@ PrefabInstance:
     - target: {fileID: 6771865128943735375, guid: 833ede71f8879f845b0731a4e455f842, type: 3}
       propertyPath: m_TagString
       value: MoneyBag
+      objectReference: {fileID: 0}
+    - target: {fileID: 8737207260420346676, guid: 833ede71f8879f845b0731a4e455f842, type: 3}
+      propertyPath: m_SortingOrder
+      value: 42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
