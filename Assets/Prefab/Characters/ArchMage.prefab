@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MultiFireballAttacker
   damage: 10
-  fireballPrefab: {fileID: -3526071524381789497, guid: 22424c2721e6fc24d9df79710c55056e, type: 3}
+  fireballPrefab: {fileID: -3526071524381789497, guid: f4e30c3f043d4f74ba91b96e689e8b64, type: 3}
   firePoint: {fileID: 3838721011827553075}
   fireballCount: 3
   spreadAngle: 30
