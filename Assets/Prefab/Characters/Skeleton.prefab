@@ -41,10 +41,10 @@ GameObject:
   m_Component:
   - component: {fileID: 364226637758989545}
   - component: {fileID: 4080579286857034136}
-  - component: {fileID: 6260808490194899389}
   - component: {fileID: 1259570239528471557}
   - component: {fileID: 5857842888799268288}
   - component: {fileID: 1886849483526012068}
+  - component: {fileID: 6260808490194899389}
   m_Layer: 7
   m_Name: Skeleton
   m_TagString: Enemy
@@ -94,25 +94,11 @@ MonoBehaviour:
   projectilePrefab: {fileID: 0}
   firePoint: {fileID: 0}
   rayDistance: 1
-  rayBoxSize: {x: 1, y: 0.8}
+  rayBoxSize: {x: 0.7, y: 0.8}
   defenderLayer:
     serializedVersion: 2
     m_Bits: 64
   sensorOrigin: {fileID: 2649116663289964204}
---- !u!114 &6260808490194899389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1085049263943020661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf6e357ce3678a2449cec734e8f6f219, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
-  flashColor: {r: 1, g: 0, b: 0, a: 1}
-  flashTime: 0.08
 --- !u!114 &1259570239528471557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51392ce3c522d8f4f804449f98042e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimator
-  animator: {fileID: 0}
+  animator: {fileID: 5678956017371348366}
   isEngagedParam: IsEngaged
   attackTrigger: Attack
   deathTrigger: Death
@@ -204,6 +190,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
+--- !u!114 &6260808490194899389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085049263943020661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf6e357ce3678a2449cec734e8f6f219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFlash
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashTime: 0.08
 --- !u!1 &6822925015535265232
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,5 +390,10 @@ PrefabInstance:
 --- !u!4 &4034386923994012613 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5880151219417440967, guid: a5561248a7f84134a909c3ae1c1c5abc, type: 3}
+  m_PrefabInstance: {fileID: 7379002757036914946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5678956017371348366 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2929819713777976460, guid: a5561248a7f84134a909c3ae1c1c5abc, type: 3}
   m_PrefabInstance: {fileID: 7379002757036914946}
   m_PrefabAsset: {fileID: 0}
