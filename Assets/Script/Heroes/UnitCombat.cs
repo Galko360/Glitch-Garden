@@ -14,6 +14,8 @@ public class UnitCombat : MonoBehaviour
     [Header("Attack")]
     [SerializeField] private float attackCooldown = 1f;
 
+    public float AttackCooldown => attackCooldown;
+
     [Header("Death Settings")]
     [SerializeField] private float fadeDuration = 1.5f;     // Time it takes to fade to 0 alpha
     [SerializeField] private float delayBeforeFade = 0.5f;  // Time to let the death animation play
@@ -40,12 +42,15 @@ public class UnitCombat : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer > 0f) return;
 
-        if (attackBehavior != null && attackBehavior.TryAttack())
+        if (attackBehavior != null && attackBehavior.HasTarget())
         {
             OnAttack?.Invoke();
             timer = attackCooldown;
         }
     }
+
+    // Called by Animation Event (via AnimationEventRelay) at the hit frame
+    public void OnAttackHit() => attackBehavior?.ExecuteAttack();
 
     public void TakeDamage(int dmg)
     {

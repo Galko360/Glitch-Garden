@@ -249,6 +249,8 @@ MonoBehaviour:
   hp: 75
   maxHp: 75
   attackCooldown: 2
+  fadeDuration: 1.5
+  delayBeforeFade: 0.5
 --- !u!114 &7795976379293496308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +300,8 @@ MonoBehaviour:
   attackTrigger: Attack
   hitTrigger: Hit
   deathTrigger: Death
+  attackSpeedParam: AttackSpeed
+  attackClipLength: 1
 --- !u!1 &5683872270513898043
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,8 +456,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2478741218242868911, guid: 9a6509c342b492c499b6317214a43b0a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3372118683498795098}
   m_SourcePrefab: {fileID: 100100000, guid: 9a6509c342b492c499b6317214a43b0a, type: 3}
+--- !u!1 &2806124686166970591 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2478741218242868911, guid: 9a6509c342b492c499b6317214a43b0a, type: 3}
+  m_PrefabInstance: {fileID: 330761176270235248}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3372118683498795098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2806124686166970591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312301693217c2d409f95fbbf001d043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationEventRelay
 --- !u!4 &6428337919643027947 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6746694396599398299, guid: 9a6509c342b492c499b6317214a43b0a, type: 3}

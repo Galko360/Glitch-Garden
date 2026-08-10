@@ -19,6 +19,7 @@ public class Coin : MonoBehaviour
     private int value;
     private List<Transform> discoveredCheckpoints = new List<Transform>();
 
+
     private void Awake()
     {
         // 1. Auto-find MoneyBag target if not assigned

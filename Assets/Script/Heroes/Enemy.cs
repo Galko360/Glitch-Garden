@@ -28,6 +28,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float fadeDuration = 1.5f;
     [SerializeField] private float delayBeforeFade = 0.5f;
 
+    [Header("Ranged Attack (leave empty for melee)")]
+    [SerializeField] private EnemyBullet projectilePrefab;
+    [SerializeField] private Transform firePoint;
+
+    public float AttackCooldown => attackCooldown;
+
     [Header("Raycast (Detect Defenders)")]
     [SerializeField] private float rayDistance = 0.8f;
     [SerializeField] private Vector2 rayBoxSize = new Vector2(0.2f, 0.8f);
@@ -71,9 +77,9 @@ public class Enemy : MonoBehaviour
 
             if (timer <= 0f)
             {
-                defender.TakeDamage(attackDamage);
                 timer = attackCooldown;
                 OnAttack?.Invoke();
+                // damage/projectile is dealt by Animation Event calling OnAttackHit()
             }
             return;
         }
@@ -103,6 +109,28 @@ public class Enemy : MonoBehaviour
         if (!hit) return null;
 
         return hit.collider.GetComponentInParent<UnitCombat>();
+    }
+
+    // Called by Animation Event at the hit frame (melee and ranged)
+    public void OnAttackHit()
+    {
+        if (isDead) return;
+
+        if (projectilePrefab != null)
+            FireProjectile();
+        else
+        {
+            UnitCombat defender = ScanForDefender();
+            defender?.TakeDamage(attackDamage);
+        }
+    }
+
+    private void FireProjectile()
+    {
+        Transform spawn = firePoint != null ? firePoint : transform;
+        EnemyBullet bullet = Instantiate(projectilePrefab, spawn.position, Quaternion.identity);
+        bullet.damage = attackDamage;
+        bullet.SetDirection(Vector2.right);
     }
 
     public void TakeDamage(int dmg)
@@ -176,13 +204,14 @@ public class Enemy : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         Transform o = sensorOrigin != null ? sensorOrigin : transform;
-        Gizmos.color = Color.yellow;
+        Gizmos.color = projectilePrefab != null ? Color.cyan : Color.yellow;
+        // Width = rayBoxSize.x + rayDistance to match the actual BoxCast sweep area
         Gizmos.DrawWireCube(
             o.position + Vector3.right * rayDistance * 0.5f,
-            new Vector3(rayBoxSize.x, rayBoxSize.y, 0f)
+            new Vector3(rayDistance + rayBoxSize.x, rayBoxSize.y, 0f)
         );
     }
 #endif

@@ -8,6 +8,11 @@ public class EnemyAnimator : MonoBehaviour
     [SerializeField] private string isEngagedParam = "IsEngaged";
     [SerializeField] private string attackTrigger = "Attack";
     [SerializeField] private string deathTrigger = "Death";
+    [SerializeField] private string attackSpeedParam = "AttackSpeed";
+
+    [Header("Attack Speed Sync")]
+    [Tooltip("Length of the attack animation clip in seconds")]
+    [SerializeField] private float attackClipLength = 1f;
 
     private Enemy enemy;
     private bool isDead = false;
@@ -17,6 +22,12 @@ public class EnemyAnimator : MonoBehaviour
         enemy = GetComponent<Enemy>();
         if (animator == null)
             animator = GetComponentInChildren<Animator>();
+    }
+
+    private void Start()
+    {
+        if (enemy == null || animator == null) return;
+        animator.SetFloat(attackSpeedParam, attackClipLength / enemy.AttackCooldown);
     }
 
     private void OnEnable()

@@ -16,27 +16,32 @@ public class CleaveAttacker : MonoBehaviour, IAttackBehavior
 
     public void Init(UnitCombat owner) { }
 
-    public bool TryAttack()
+    public bool HasTarget()
     {
         Transform origin = sensorOrigin != null ? sensorOrigin : transform;
-
-        // Scan the box in front — grab ALL enemies, not just nearest
         Collider2D[] hits = Physics2D.OverlapBoxAll(
             origin.position + Vector3.left * (range * 0.5f),
             new Vector2(range, boxSize.y),
             0f,
             enemyLayer
         );
+        return hits.Length > 0;
+    }
 
-        if (hits.Length == 0) return false;
-
+    public void ExecuteAttack()
+    {
+        Transform origin = sensorOrigin != null ? sensorOrigin : transform;
+        Collider2D[] hits = Physics2D.OverlapBoxAll(
+            origin.position + Vector3.left * (range * 0.5f),
+            new Vector2(range, boxSize.y),
+            0f,
+            enemyLayer
+        );
         foreach (var col in hits)
         {
             Enemy e = col.GetComponentInParent<Enemy>();
             e?.TakeDamage(damage);
         }
-
-        return true;
     }
 
 #if UNITY_EDITOR

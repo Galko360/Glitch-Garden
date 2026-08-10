@@ -1,14 +1,11 @@
 public interface IAttackBehavior
 {
-    /// <summary>
-    /// Called once after the unit is created. Use to cache references.
-    /// </summary>
     void Init(UnitCombat owner);
 
-    /// <summary>
-    /// Called by UnitCombat when the attack timer is ready.
-    /// Return true if an attack was actually performed (resets the timer).
-    /// Return false if no valid target was found (timer stays ready).
-    /// </summary>
-    bool TryAttack();
+    // Detection only — returns true if a valid target is in range.
+    // Resets the cooldown timer and starts the attack animation.
+    bool HasTarget();
+
+    // Damage/projectile — called by Animation Event at the hit frame.
+    void ExecuteAttack();
 }
