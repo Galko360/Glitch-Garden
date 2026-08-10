@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50a162eedd4265449a68185e27094394, type: 3}
   m_Name: EnemyData_Skeleton
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  id: 
-  prefab: {fileID: 0}
-  icon: {fileID: 0}
+  id: Skeleton
+  prefab: {fileID: 4080579286857034136, guid: b1e606c316780434c916ae9cf4478162, type: 3}
+  icon: {fileID: 5100586705115029124, guid: b0a4157eee340e7478e4d1039b36840b, type: 3}
   hp: 3
   attackDamage: 1
   speed: 1

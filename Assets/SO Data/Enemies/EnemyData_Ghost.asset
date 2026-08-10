@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50a162eedd4265449a68185e27094394, type: 3}
   m_Name: EnemyData_Ghost
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  id: Death Knight
-  prefab: {fileID: 9085674948743521744, guid: ed96a1dd60ad1ae41870c0d84ce644fd, type: 3}
-  icon: {fileID: -7339290641555315788, guid: 315051128f814e94aadba32f79462327, type: 3}
+  id: Ghost
+  prefab: {fileID: 9085674948743521744, guid: 69dc01d14adcc154d86a8bbd4c551991, type: 3}
+  icon: {fileID: -7587770699213859809, guid: c22e821b32592be45a03503ff543719b, type: 3}
   hp: 3
-  speed: 1
   attackDamage: 1
+  speed: 1
   attackCooldown: 1
   goldReward: 5
