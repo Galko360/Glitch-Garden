@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MultiFireballAttacker
   damage: 10
-  fireballPrefab: {fileID: -3526071524381789497, guid: 22424c2721e6fc24d9df79710c55056e, type: 3}
+  fireballPrefab: {fileID: -3526071524381789497, guid: f4e30c3f043d4f74ba91b96e689e8b64, type: 3}
   firePoint: {fileID: 3838721011827553075}
   fireballCount: 3
   spreadAngle: 30
@@ -250,6 +250,8 @@ MonoBehaviour:
   attackTrigger: Attack
   hitTrigger: Hit
   deathTrigger: Death
+  attackSpeedParam: AttackSpeed
+  attackClipLength: 1
 --- !u!1 &2594713286220759596
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,7 +589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4772751156684499602, guid: e050fe8659040cc448e51bf01dddc53a, type: 3}
       propertyPath: m_SortingOrder
-      value: 8
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6372205498501707357, guid: e050fe8659040cc448e51bf01dddc53a, type: 3}
       propertyPath: m_LocalScale.x
@@ -676,8 +678,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7015115897285324153, guid: e050fe8659040cc448e51bf01dddc53a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6121286526517190133}
   m_SourcePrefab: {fileID: 100100000, guid: e050fe8659040cc448e51bf01dddc53a, type: 3}
+--- !u!1 &615410195929548907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7015115897285324153, guid: e050fe8659040cc448e51bf01dddc53a, type: 3}
+  m_PrefabInstance: {fileID: 7624826087380083986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6121286526517190133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615410195929548907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312301693217c2d409f95fbbf001d043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationEventRelay
 --- !u!4 &3584387901021475663 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6372205498501707357, guid: e050fe8659040cc448e51bf01dddc53a, type: 3}

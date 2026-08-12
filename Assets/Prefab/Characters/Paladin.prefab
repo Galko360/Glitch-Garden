@@ -255,6 +255,8 @@ MonoBehaviour:
   hp: 70
   maxHp: 70
   attackCooldown: 1
+  fadeDuration: 1.5
+  delayBeforeFade: 0.5
 --- !u!114 &1017008692282052869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +310,8 @@ MonoBehaviour:
   attackTrigger: Attack
   hitTrigger: Hit
   deathTrigger: Death
+  attackSpeedParam: AttackSpeed
+  attackClipLength: 1
 --- !u!1 &4476595406044482161
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,7 +357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3323944287838275327, guid: 6337e17a406343f4f8e53888b5d52f8a, type: 3}
       propertyPath: m_SortingOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3617335023738081271, guid: 6337e17a406343f4f8e53888b5d52f8a, type: 3}
       propertyPath: m_Size.x
@@ -365,7 +369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3617335023738081271, guid: 6337e17a406343f4f8e53888b5d52f8a, type: 3}
       propertyPath: m_SortingOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5041673727181557043, guid: 6337e17a406343f4f8e53888b5d52f8a, type: 3}
       propertyPath: m_LocalScale.x
@@ -433,7 +437,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5345111977044409408, guid: 6337e17a406343f4f8e53888b5d52f8a, type: 3}
       propertyPath: m_SortingOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5877766508340882057, guid: 6337e17a406343f4f8e53888b5d52f8a, type: 3}
       propertyPath: m_Size.x
@@ -445,7 +449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5877766508340882057, guid: 6337e17a406343f4f8e53888b5d52f8a, type: 3}
       propertyPath: m_SortingOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5919016311181515593, guid: 6337e17a406343f4f8e53888b5d52f8a, type: 3}
       propertyPath: m_Size.y
@@ -453,7 +457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5919016311181515593, guid: 6337e17a406343f4f8e53888b5d52f8a, type: 3}
       propertyPath: m_SortingOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7196543095309568159, guid: 6337e17a406343f4f8e53888b5d52f8a, type: 3}
       propertyPath: m_Size.x
@@ -477,13 +481,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7199135236942910930, guid: 6337e17a406343f4f8e53888b5d52f8a, type: 3}
       propertyPath: m_SortingOrder
-      value: 9
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 979068051082710672, guid: 6337e17a406343f4f8e53888b5d52f8a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5626266270786775795}
   m_SourcePrefab: {fileID: 100100000, guid: 6337e17a406343f4f8e53888b5d52f8a, type: 3}
+--- !u!1 &954242971346623618 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 979068051082710672, guid: 6337e17a406343f4f8e53888b5d52f8a, type: 3}
+  m_PrefabInstance: {fileID: 47428369213510162}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5626266270786775795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954242971346623618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312301693217c2d409f95fbbf001d043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationEventRelay
 --- !u!95 &4745470080253639710 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4716170669287304716, guid: 6337e17a406343f4f8e53888b5d52f8a, type: 3}

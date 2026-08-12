@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50a162eedd4265449a68185e27094394, type: 3}
+  m_Name: EnemyData_Ghost
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  id: Ghost
+  prefab: {fileID: 9085674948743521744, guid: 69dc01d14adcc154d86a8bbd4c551991, type: 3}
+  icon: {fileID: -7587770699213859809, guid: c22e821b32592be45a03503ff543719b, type: 3}
+  hp: 3
+  attackDamage: 1
+  speed: 1
+  attackCooldown: 1
+  goldReward: 5

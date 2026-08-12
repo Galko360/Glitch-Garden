@@ -2,7 +2,8 @@ using System;
 using UnityEngine;
 
 /// <summary>
-/// Attach to the Base GameObject alongside a BoxCollider2D (set Is Trigger = true).
+/// Attach to the Base GameObject alongside a BoxCollider2D (set Is Trigger = true) 
+/// and a SpriteRenderer component.
 /// The collider should span the full height of all lanes.
 /// Any Enemy that enters the trigger deals damage to the base.
 /// </summary>
@@ -12,6 +13,11 @@ public class BaseManager : MonoBehaviour
 
     [Header("HP")]
     [SerializeField] private int maxHp = 10;
+
+    [Header("Visuals")]
+    [Tooltip("Assign sprites in order: Index 0 = Max HP, Last Index = 1 HP (or vice versa depending on your setup).")]
+    [SerializeField] private Sprite[] healthSprites;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     public int Hp { get; private set; }
     public int MaxHp => maxHp;
@@ -29,6 +35,14 @@ public class BaseManager : MonoBehaviour
         Instance = this;
 
         Hp = maxHp;
+
+        // Fallback to finding SpriteRenderer automatically if not assigned
+        if (spriteRenderer == null)
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
+        UpdateBaseSprite();
     }
 
     // -------------------------------------------------
@@ -55,8 +69,25 @@ public class BaseManager : MonoBehaviour
 
         Debug.Log($"[Base] Hit! HP = {Hp}/{maxHp}");
 
+        UpdateBaseSprite();
+
         if (Hp <= 0)
             Die();
+    }
+
+    private void UpdateBaseSprite()
+    {
+        if (spriteRenderer == null || healthSprites == null || healthSprites.Length == 0)
+            return;
+
+        // Map HP to an array index. 
+        // Assuming your array has 10 elements where index 0 is full HP (10) and index 9 is 1 HP:
+        int spriteIndex = Mathf.Clamp(maxHp - Hp, 0, healthSprites.Length - 1);
+
+        if (healthSprites[spriteIndex] != null)
+        {
+            spriteRenderer.sprite = healthSprites[spriteIndex];
+        }
     }
 
     private void Die()

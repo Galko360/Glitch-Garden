@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50a162eedd4265449a68185e27094394, type: 3}
+  m_Name: EnemyData_DarkMage
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  id: DarkMage
+  prefab: {fileID: -3552189298952635934, guid: a72cf28d2504d9740935f4d09775c541, type: 3}
+  icon: {fileID: 8302129328904623997, guid: a6f2489f11c09754c9414320f3a9a914, type: 3}
+  hp: 3
+  attackDamage: 1
+  speed: 1
+  attackCooldown: 1
+  goldReward: 5
