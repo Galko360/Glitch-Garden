@@ -226,7 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RangedAttacker
   damage: 5
   bulletPrefab: {fileID: -3526071524381789497, guid: 5ccab68509d9ea74dba78ce2e28c442f, type: 3}
-  firePoint: {fileID: 3838721011827553075}
+  firePoint: {fileID: 7970993978245731826}
   sensorOrigin: {fileID: 4832756863520246721}
   boxSize: {x: 0.2, y: 0.8}
   range: 10
@@ -406,7 +406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2563918469265722623, guid: 0cb30c3d4fea08347902a79c3e2c4567, type: 3}
       propertyPath: m_SortingOrder
-      value: 8
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2966750030250392361, guid: 0cb30c3d4fea08347902a79c3e2c4567, type: 3}
       propertyPath: m_Size.x
@@ -541,5 +541,10 @@ Transform:
 --- !u!95 &6811226936160326565 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 2915651743724785588, guid: 0cb30c3d4fea08347902a79c3e2c4567, type: 3}
+  m_PrefabInstance: {fileID: 8570401904148765713}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7970993978245731826 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1760493854102063587, guid: 0cb30c3d4fea08347902a79c3e2c4567, type: 3}
   m_PrefabInstance: {fileID: 8570401904148765713}
   m_PrefabAsset: {fileID: 0}

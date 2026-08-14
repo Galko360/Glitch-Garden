@@ -98,8 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   data: {fileID: 0}
   speed: 2.5
-  hp: 75
-  attackDamage: 20
+  hp: 55
+  attackDamage: 15
   attackCooldown: 1
   goldReward: 5
   coinPrefab: {fileID: 4714269164434839061, guid: 9ffad92cc2a27824f96c82ef8628775c, type: 3}

@@ -84,7 +84,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   data: {fileID: 0}
   speed: 0.7
-  hp: 100
+  hp: 50
   attackDamage: 20
   attackCooldown: 1.4
   goldReward: 5
@@ -317,6 +317,10 @@ PrefabInstance:
     - target: {fileID: 1906299701228180048, guid: a5561248a7f84134a909c3ae1c1c5abc, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2088644156057050276, guid: a5561248a7f84134a909c3ae1c1c5abc, type: 3}
+      propertyPath: m_SortingOrder
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2470876875358946327, guid: a5561248a7f84134a909c3ae1c1c5abc, type: 3}
       propertyPath: m_Layer
