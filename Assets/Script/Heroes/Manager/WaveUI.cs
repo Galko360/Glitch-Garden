@@ -27,7 +27,9 @@ public class WaveUI : MonoBehaviour
 
         // Top left — always visible
         if (waveLabel != null)
-            waveLabel.text = $"Wave : {waveController.CurrentWave}";
+
+            // Used to be waveLabel.text = $"Wave : {waveController.CurrentWave}";
+            waveLabel.text = $"{waveController.CurrentWave}";
 
         // Top middle — visible during prep phase or between-wave break
         if (countdownLabel != null)
@@ -35,7 +37,8 @@ public class WaveUI : MonoBehaviour
             countdownLabel.gameObject.SetActive(waveController.IsBreak);
 
             if (waveController.IsPrepPhase)
-                countdownLabel.text = $"Buy and Place Heroes to defend the castle. Prepare! {Mathf.CeilToInt(waveController.BreakTimeRemaining)}s";
+                countdownLabel.text = $"Buy and Place Heroes to defend the castle. " + "" +
+                    $"Prepare, Wave in {Mathf.CeilToInt(waveController.BreakTimeRemaining)}s";
             else if (waveController.IsBreak)
                 countdownLabel.text = $"Next Wave in : {Mathf.CeilToInt(waveController.BreakTimeRemaining)}s";
         }
