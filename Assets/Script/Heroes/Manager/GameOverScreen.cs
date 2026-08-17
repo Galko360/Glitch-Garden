@@ -2,11 +2,19 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class GameOverScreen : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TMP_Text waveReachedText;
+
+    [Header("Scene Management")]
+    [SerializeField] private UnityEngine.Object mainMenuSceneAsset; // Allows dragging a Scene file in the Inspector
+    [SerializeField, HideInInspector] private string mainMenuSceneName; // Hidden string used at runtime
 
     // -------------------------------------------------
 
@@ -55,6 +63,19 @@ public class GameOverScreen : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void LoadMainMenu()
+    {
+        Time.timeScale = 1f;
+        if (!string.IsNullOrEmpty(mainMenuSceneName))
+        {
+            SceneManager.LoadScene(mainMenuSceneName);
+        }
+        else
+        {
+            Debug.LogError("Main Menu scene has not been assigned in the GameOverScreen Inspector!", this);
+        }
+    }
+
     public void Quit()
     {
 #if UNITY_EDITOR
@@ -63,4 +84,21 @@ public class GameOverScreen : MonoBehaviour
         Application.Quit();
 #endif
     }
+
+    // This automatically runs in the editor whenever you change a value in the inspector
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (mainMenuSceneAsset != null)
+        {
+            string path = AssetDatabase.GetAssetPath(mainMenuSceneAsset);
+            string name = System.IO.Path.GetFileNameWithoutExtension(path);
+            mainMenuSceneName = name;
+        }
+        else
+        {
+            mainMenuSceneName = string.Empty;
+        }
+    }
+#endif
 }

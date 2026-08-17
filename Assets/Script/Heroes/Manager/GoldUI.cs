@@ -22,6 +22,7 @@ public class GoldUI : MonoBehaviour
 
     private void UpdateDisplay(int gold)
     {
-        goldText.text = $"Gold: {gold}";
+        // used to be  goldText.text = $"Gold: {gold}"
+        goldText.text = $":{gold}";
     }
 }

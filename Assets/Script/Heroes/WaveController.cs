@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,10 +25,14 @@ public class WaveController : MonoBehaviour
     [SerializeField] private float minSpawnInterval = 0.2f;
     [SerializeField] private float spawnIntervalDecreasePerWave = 0.05f;
 
-    public int CurrentWave { get; private set; } = 0;   // 1-based, shown to player
+    public int CurrentWave { get; private set; } = 0;
     public bool IsBreak { get; private set; } = false;
     public bool IsPrepPhase { get; private set; } = false;
     public float BreakTimeRemaining { get; private set; } = 0f;
+
+    public event Action OnPreparationStarted;
+    public event Action OnWaveStarted;
+    public event Action OnWaveFinished;
 
     private Coroutine running;
     private int spawnIndex = 0;
@@ -37,7 +42,14 @@ public class WaveController : MonoBehaviour
     private void Awake()
     {
         if (spawners.Count == 0)
-            spawners.AddRange(FindObjectsByType<EnemySpawner>(FindObjectsInactive.Include, FindObjectsSortMode.None));
+        {
+            spawners.AddRange(
+                FindObjectsByType<EnemySpawner>(
+                    FindObjectsInactive.Include,
+                    FindObjectsSortMode.None
+                )
+            );
+        }
     }
 
     private void Start()
@@ -56,10 +68,15 @@ public class WaveController : MonoBehaviour
             yield break;
         }
 
-        // ── Prep phase ──────────────────────────────────────────
+        // ────────────────────────────────────────────────────────
+        // Initial preparation
+        // ────────────────────────────────────────────────────────
+
         IsPrepPhase = true;
         IsBreak = true;
         BreakTimeRemaining = prepDuration;
+
+        OnPreparationStarted?.Invoke();
 
         while (BreakTimeRemaining > 0f)
         {
@@ -69,22 +86,43 @@ public class WaveController : MonoBehaviour
 
         IsPrepPhase = false;
         IsBreak = false;
+
+        // ────────────────────────────────────────────────────────
+        // Endless wave cycle
         // ────────────────────────────────────────────────────────
 
         while (true)
         {
             CurrentWave++;
+
             WaveConfig config = BuildWaveConfig(CurrentWave);
 
-            Debug.Log($"[Wave] Starting wave {CurrentWave} | enemies={config.enemyCount} interval={config.spawnInterval:F2}s");
+            Debug.Log(
+                $"[Wave] Starting wave {CurrentWave} | " +
+                $"enemies={config.enemyCount} " +
+                $"interval={config.spawnInterval:F2}s"
+            );
+
+            OnWaveStarted?.Invoke();
 
             yield return StartCoroutine(RunWave(config));
 
-            Debug.Log($"[Wave] Wave {CurrentWave} finished. Break for {breakDuration}s");
+            OnWaveFinished?.Invoke();
 
-            // Break — player can buy/merge
+            Debug.Log(
+                $"[Wave] Wave {CurrentWave} finished. " +
+                $"Break for {breakDuration}s"
+            );
+
+            // ────────────────────────────────────────────────────
+            // Break / preparation for next wave
+            // ────────────────────────────────────────────────────
+
             IsBreak = true;
             BreakTimeRemaining = breakDuration;
+
+            // The break is the presentation/preparation period.
+            OnPreparationStarted?.Invoke();
 
             while (BreakTimeRemaining > 0f)
             {
@@ -103,7 +141,9 @@ public class WaveController : MonoBehaviour
         for (int i = 0; i < config.enemyCount; i++)
         {
             EnemySpawner spawner = PickSpawner(config.roundRobin);
-            spawner.SpawnEnemy(config.GetRandomEnemy());   // null = use spawner's default
+
+            spawner.SpawnEnemy(config.GetRandomEnemy());
+
             yield return new WaitForSeconds(config.spawnInterval);
         }
     }
@@ -121,13 +161,28 @@ public class WaveController : MonoBehaviour
         if (index < waves.Count && waves[index] != null)
             return waves[index];
 
-        // Procedural — create a temporary runtime-only config
         WaveConfig generated = ScriptableObject.CreateInstance<WaveConfig>();
 
         int extraWaves = waveNumber - waves.Count;
-        generated.enemyCount    = baseEnemyCount + (extraWaves * enemyCountIncreasePerWave);
-        generated.spawnInterval = Mathf.Max(minSpawnInterval, baseSpawnInterval - (extraWaves * spawnIntervalDecreasePerWave));
-        generated.roundRobin    = false;
+
+        generated.enemyCount =
+            baseEnemyCount +
+            (extraWaves * enemyCountIncreasePerWave);
+
+        generated.spawnInterval =
+            Mathf.Max(
+                minSpawnInterval,
+                baseSpawnInterval -
+                (extraWaves * spawnIntervalDecreasePerWave)
+            );
+
+        generated.roundRobin = false;
+
+        // Inherit enemy pool from the last valid hand-crafted wave safely
+        if (waves.Count > 0 && waves[waves.Count - 1] != null)
+        {
+            generated.possibleEnemies = waves[waves.Count - 1].possibleEnemies;
+        }
 
         return generated;
     }
@@ -137,7 +192,7 @@ public class WaveController : MonoBehaviour
     private EnemySpawner PickSpawner(bool roundRobin)
     {
         if (!roundRobin)
-            return spawners[Random.Range(0, spawners.Count)];
+            return spawners[UnityEngine.Random.Range(0, spawners.Count)];
 
         return spawners[spawnIndex++ % spawners.Count];
     }
@@ -145,5 +200,8 @@ public class WaveController : MonoBehaviour
     // -------------------------------------------------
 
     [ContextMenu("Skip Break")]
-    public void SkipBreak() => BreakTimeRemaining = 0f;
+    public void SkipBreak()
+    {
+        BreakTimeRemaining = 0f;
+    }
 }
