@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class WaveController : MonoBehaviour
 {
     [Header("References")]
@@ -178,6 +177,12 @@ public class WaveController : MonoBehaviour
             );
 
         generated.roundRobin = false;
+
+        // Inherit enemy pool from the last valid hand-crafted wave safely
+        if (waves.Count > 0 && waves[waves.Count - 1] != null)
+        {
+            generated.possibleEnemies = waves[waves.Count - 1].possibleEnemies;
+        }
 
         return generated;
     }

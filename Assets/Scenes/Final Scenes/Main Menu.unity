@@ -1336,7 +1336,7 @@ MonoBehaviour:
     waveStarted: {fileID: 8300000, guid: d7e1ee79ebe638f4aa32db8ec8ac4609, type: 3}
     gameLoop: {fileID: 8300000, guid: 1326d04512eb150478b416599aa56b12, type: 3}
     gameOver: {fileID: 8300000, guid: 0893ffa8d908bea4b94fac8a105c6cb3, type: 3}
-  masterVolume: 1
+  masterVolume: 0.25
   gameplaySceneAsset: {fileID: 102900000, guid: 44f054f62ed73474fabf0b663902a217, type: 3}
   gameplaySceneName: Main Scene
 --- !u!4 &1166618435

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 28dd46888876ee44ba50af2434616f4c
+guid: 0f3c8ce8d395c3b4ea63320b87966bed
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2406175110169712062
-    second: Credits Merge Defenders_0
+      213: -8785324073952256026
+    second: Credits Merge Defenders 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Credits Merge Defenders_0
+      name: Credits Merge Defenders 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 24aa2fa5c7c8b9ed0800000000000000
-      internalID: -2406175110169712062
+      spriteID: 6ef53672d42441680800000000000000
+      internalID: -8785324073952256026
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Credits Merge Defenders_0: -2406175110169712062
+      Credits Merge Defenders 1_0: -8785324073952256026
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

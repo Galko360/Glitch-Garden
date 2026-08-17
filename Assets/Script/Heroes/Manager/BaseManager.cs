@@ -7,6 +7,7 @@ using UnityEngine;
 /// The collider should span the full height of all lanes.
 /// Any Enemy that enters the trigger deals damage to the base.
 /// </summary>
+[RequireComponent(typeof(AudioSource))]
 public class BaseManager : MonoBehaviour
 {
     public static BaseManager Instance { get; private set; }
@@ -19,6 +20,16 @@ public class BaseManager : MonoBehaviour
     [SerializeField] private Sprite[] healthSprites;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip hitSound;
+    [SerializeField, Range(0f, 0.5f)] private float pitchVariance = 0.1f;
+    [SerializeField, Range(0f, 0.5f)] private float volumeVariance = 0.1f;
+    [SerializeField, Range(0.01f, 3f)] private float baseAudioVolume = 1f;
+    [SerializeField, Range(1f, 5f)] private float volumeBoost = 1.5f;
+
+    [Header("Audio Toggle")]
+    [field: SerializeField] public bool PlayHitSoundEnabled { get; set; } = true;
+
     public int Hp { get; private set; }
     public int MaxHp => maxHp;
 
@@ -26,6 +37,7 @@ public class BaseManager : MonoBehaviour
     public event Action OnBaseDied;
 
     private bool isDead;
+    private AudioSource audioSource;
 
     // -------------------------------------------------
 
@@ -42,7 +54,20 @@ public class BaseManager : MonoBehaviour
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
+        SetupAudioSource();
         UpdateBaseSprite();
+    }
+
+    private void SetupAudioSource()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 0f; // 2D sound for the base so it is always heard clearly by the player
     }
 
     // -------------------------------------------------
@@ -69,10 +94,24 @@ public class BaseManager : MonoBehaviour
 
         Debug.Log($"[Base] Hit! HP = {Hp}/{maxHp}");
 
+        PlayHitSound();
+
         UpdateBaseSprite();
 
         if (Hp <= 0)
             Die();
+    }
+
+    private void PlayHitSound()
+    {
+        if (!PlayHitSoundEnabled || hitSound == null || audioSource == null) return;
+
+        audioSource.pitch = 1f + UnityEngine.Random.Range(-pitchVariance, pitchVariance);
+
+        float finalVolume = baseAudioVolume * volumeBoost;
+        float randomizedVolume = finalVolume + UnityEngine.Random.Range(-volumeVariance, volumeVariance);
+
+        audioSource.PlayOneShot(hitSound, Mathf.Clamp01(randomizedVolume));
     }
 
     private void UpdateBaseSprite()
