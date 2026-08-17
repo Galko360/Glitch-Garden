@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/PlayTest 2.0.unity
     guid: 6e7f31551456dc54dac8645ba7af0128
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Final Scenes/Main Menu.unity
     guid: d248a7d3fa023d14e942f4c202d41a80
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Final Scenes/Main Scene.unity
     guid: 44f054f62ed73474fabf0b663902a217
   - enabled: 1
