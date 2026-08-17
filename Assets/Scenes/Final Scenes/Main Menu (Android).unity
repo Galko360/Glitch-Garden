@@ -1415,7 +1415,7 @@ GameObject:
   - component: {fileID: 789991984}
   - component: {fileID: 789991983}
   m_Layer: 5
-  m_Name: Close Credits Button (1)
+  m_Name: Continue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2126,7 +2126,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1114082339
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3294,9 +3294,9 @@ MonoBehaviour:
   - {fileID: 1009771790}
   botInner:
   - {fileID: 1390420489}
-  warningBorderPanel: {fileID: 0}
-  continueButton: {fileID: 0}
-  quitButton: {fileID: 0}
+  warningBorderPanel: {fileID: 1114082338}
+  continueButton: {fileID: 789991983}
+  quitButton: {fileID: 1764589853}
   checkEveryFrame: 0
 --- !u!1 &1619356841
 GameObject:
@@ -3688,7 +3688,7 @@ GameObject:
   - component: {fileID: 1764589854}
   - component: {fileID: 1764589853}
   m_Layer: 5
-  m_Name: Close Credits Button
+  m_Name: Close Game Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
