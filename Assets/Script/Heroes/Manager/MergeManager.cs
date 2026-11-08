@@ -58,15 +58,9 @@ public class MergeManager : MonoBehaviour
         {
             GameObject unit = Instantiate(unitPrefab, tile.CenterWorld, Quaternion.identity);
 
+            // Subscribe to death so the tile frees itself
             if (unit.TryGetComponent<UnitCombat>(out var combat))
-            {
-                // Lane row assignment (independent of death subscription)
-                Lane lane = tile.GetComponentInParent<Lane>();
-                if (lane != null) combat.SetRow(lane.RowIndex);
-
-                // Always subscribe to death so the tile frees itself
                 SubscribeToUnitDeath(combat, tile);
-            }
 
             tile.TryOccupy(unit.transform);
             tileToUnit[tile] = unit.transform;
@@ -94,19 +88,13 @@ public class MergeManager : MonoBehaviour
 
         GameObject merged = Instantiate(outputData.prefab, tile.CenterWorld, Quaternion.identity);
 
-        if (merged.TryGetComponent<UnitCombat>(out var mergedCombat))
-        {
-            Lane mergedLane = tile.GetComponentInParent<Lane>();
-            if (mergedLane != null) mergedCombat.SetRow(mergedLane.RowIndex);
-        }
-
         tile.TryOccupy(merged.transform);
 
         tileToUnit[tile] = merged.transform;
         tileToData[tile] = outputData;
 
-        if (merged.TryGetComponent<UnitCombat>(out var mergedCombat2))
-            SubscribeToUnitDeath(mergedCombat2, tile);
+        if (merged.TryGetComponent<UnitCombat>(out var mergedCombat))
+            SubscribeToUnitDeath(mergedCombat, tile);
 
         return true;
     }

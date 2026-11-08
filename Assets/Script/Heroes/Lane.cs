@@ -17,10 +17,6 @@ public class Lane : MonoBehaviour
 
     public void Initialize()
     {
-        if (spawner != null)
-            spawner.SetRow(rowIndex);
-        Debug.Log(rowIndex);
-
         if (tilesRoot == null)
             Debug.LogWarning($"{name}: tilesRoot not assigned");
     }

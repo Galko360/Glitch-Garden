@@ -34,8 +34,4 @@ public class UnitCombat : Combatant
     }
 
     public override void OnAttackHit() => attackBehavior?.ExecuteAttack();
-
-    // TODO: lane row is passed in by MergeManager but nothing consumes it yet.
-    // Wire up when CombatRegistry goes live, or remove both sides.
-    public void SetRow(int row) { }
 }

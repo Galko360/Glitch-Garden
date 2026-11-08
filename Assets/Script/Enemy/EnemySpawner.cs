@@ -4,10 +4,6 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Enemy defaultPrefab;
 
-    private int rowIndex;
-
-    public void SetRow(int row) => rowIndex = row;
-
     [ContextMenu("Spawn Enemy")]
     public Enemy SpawnEnemy(EnemyData data = null)
     {
