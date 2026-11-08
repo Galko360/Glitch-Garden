@@ -10,18 +10,19 @@ public class BleedOnHit : MonoBehaviour
     [SerializeField] private float tickInterval = 1f;
     [SerializeField] private float duration     = 3f;
 
-    public void Apply(Enemy enemy)
+    public void Apply(Combatant target)
     {
-        if (enemy == null) return;
+        if (target == null) return;
 
         // If already bleeding, just refresh the duration
-        BleedEffect existing = enemy.GetComponent<BleedEffect>();
+        BleedEffect existing = target.GetComponent<BleedEffect>();
         if (existing != null)
-            existing.Refresh(duration);
-        else
         {
-            BleedEffect bleed = enemy.gameObject.AddComponent<BleedEffect>();
-            bleed.Init(damagePerTick, tickInterval, duration);
+            existing.Refresh(duration);
+            return;
         }
+
+        target.gameObject.AddComponent<BleedEffect>()
+              .Init(damagePerTick, tickInterval, duration);
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Added to an enemy at runtime when hit by a bleed-applying projectile.
+/// Added to a combatant at runtime when hit by a bleed-applying projectile.
 /// Ticks damage every interval for the duration, then removes itself.
 /// </summary>
 public class BleedEffect : MonoBehaviour
@@ -11,12 +11,13 @@ public class BleedEffect : MonoBehaviour
     private float lifeTimer;
     private float tickTimer;
 
-    public void Init(int dmg, float interval, float duration)
+    public BleedEffect Init(int dmg, float interval, float duration)
     {
         damagePerTick = dmg;
         tickInterval  = interval;
         lifeTimer     = duration;
         tickTimer     = interval;   // first tick after one interval, not immediately
+        return this;
     }
 
     public void Refresh(float newDuration)
@@ -36,7 +37,7 @@ public class BleedEffect : MonoBehaviour
         tickTimer -= Time.deltaTime;
         if (tickTimer <= 0f)
         {
-            GetComponent<Enemy>()?.TakeDamage(damagePerTick);
+            GetComponent<Combatant>()?.TakeDamage(damagePerTick);
             tickTimer = tickInterval;
         }
     }

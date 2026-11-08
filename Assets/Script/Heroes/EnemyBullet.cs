@@ -1,34 +1,16 @@
 using UnityEngine;
 
 /// <summary>
-/// Projectile fired by ranged enemies (e.g. DarkMage).
-/// Mirrors Bullet.cs but damages UnitCombat (defenders) instead of Enemy.
+/// Enemy projectile (e.g. DarkMage) — damages placed player units.
 /// </summary>
-public class EnemyBullet : MonoBehaviour
+public class EnemyBullet : Projectile
 {
-    [Header("Movement")]
-    public float speed = 6f;
-    public float lifeTime = 3f;
+    protected override Combatant FindValidTarget(Collider2D other)
+        => other.GetComponentInParent<UnitCombat>();
 
-    [Header("Damage")]
-    [HideInInspector] public int damage;
-    [HideInInspector] public Vector2 direction = Vector2.left;
-
-    private void Start() => Destroy(gameObject, lifeTime);
-
-    private void Update()
+    protected override void OnHitTarget(Combatant victim)
     {
-        transform.Translate(direction * speed * Time.deltaTime);
-    }
-
-    public void SetDirection(Vector2 dir) => direction = dir.normalized;
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        UnitCombat defender = other.GetComponentInParent<UnitCombat>();
-        if (defender == null) return;
-
-        defender.TakeDamage(damage);
+        victim.TakeDamage(damage);
         Destroy(gameObject);
     }
 }

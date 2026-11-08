@@ -24,6 +24,8 @@ public class WaveController : MonoBehaviour
     [SerializeField] private float baseSpawnInterval = 0.75f;
     [SerializeField] private float minSpawnInterval = 0.2f;
     [SerializeField] private float spawnIntervalDecreasePerWave = 0.05f;
+    [Tooltip("Cycle lanes in order instead of picking at random during endless waves.")]
+    [SerializeField] private bool endlessRoundRobin = false;
 
     public int CurrentWave { get; private set; } = 0;
     public bool IsBreak { get; private set; } = false;
@@ -95,7 +97,7 @@ public class WaveController : MonoBehaviour
         {
             CurrentWave++;
 
-            WaveConfig config = BuildWaveConfig(CurrentWave);
+            WaveSettings config = BuildWaveSettings(CurrentWave);
 
             Debug.Log(
                 $"[Wave] Starting wave {CurrentWave} | " +
@@ -136,7 +138,7 @@ public class WaveController : MonoBehaviour
 
     // -------------------------------------------------
 
-    private IEnumerator RunWave(WaveConfig config)
+    private IEnumerator RunWave(WaveSettings config)
     {
         for (int i = 0; i < config.enemyCount; i++)
         {
@@ -151,40 +153,45 @@ public class WaveController : MonoBehaviour
     // -------------------------------------------------
 
     /// <summary>
-    /// Returns the hand-crafted WaveConfig if one exists for this wave number,
+    /// Returns the hand-crafted wave if one exists for this wave number,
     /// otherwise procedurally generates one that scales with wave number.
     /// </summary>
-    private WaveConfig BuildWaveConfig(int waveNumber)
+    private WaveSettings BuildWaveSettings(int waveNumber)
     {
         int index = waveNumber - 1;
 
         if (index < waves.Count && waves[index] != null)
-            return waves[index];
+            return waves[index].ToSettings();
 
-        WaveConfig generated = ScriptableObject.CreateInstance<WaveConfig>();
+        // 0 for the first generated wave, so it uses the base values as-is
+        int extraWaves = Mathf.Max(0, waveNumber - waves.Count - 1);
 
-        int extraWaves = waveNumber - waves.Count;
-
-        generated.enemyCount =
-            baseEnemyCount +
-            (extraWaves * enemyCountIncreasePerWave);
-
-        generated.spawnInterval =
-            Mathf.Max(
-                minSpawnInterval,
-                baseSpawnInterval -
-                (extraWaves * spawnIntervalDecreasePerWave)
-            );
-
-        generated.roundRobin = false;
-
-        // Inherit enemy pool from the last valid hand-crafted wave safely
-        if (waves.Count > 0 && waves[waves.Count - 1] != null)
+        return new WaveSettings
         {
-            generated.possibleEnemies = waves[waves.Count - 1].possibleEnemies;
-        }
+            enemyCount = baseEnemyCount + (extraWaves * enemyCountIncreasePerWave),
 
-        return generated;
+            spawnInterval = Mathf.Max(
+                minSpawnInterval,
+                baseSpawnInterval - (extraWaves * spawnIntervalDecreasePerWave)
+            ),
+
+            roundRobin = endlessRoundRobin,
+            possibleEnemies = InheritEnemyPool()
+        };
+    }
+
+    /// <summary>
+    /// Copy the enemy pool from the last hand-crafted wave.
+    /// Cloned so a generated wave can never mutate the saved asset.
+    /// </summary>
+    private EnemyData[] InheritEnemyPool()
+    {
+        if (waves.Count == 0) return null;
+
+        WaveConfig last = waves[waves.Count - 1];
+        if (last == null || last.possibleEnemies == null) return null;
+
+        return (EnemyData[])last.possibleEnemies.Clone();
     }
 
     // -------------------------------------------------

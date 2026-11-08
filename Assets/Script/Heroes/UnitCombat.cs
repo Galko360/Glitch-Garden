@@ -1,36 +1,19 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
-public class UnitCombat : MonoBehaviour
+/// <summary>
+/// A placed player unit. Health and death are handled by Combatant;
+/// this class only drives the attack cycle through its IAttackBehavior.
+/// </summary>
+public class UnitCombat : Combatant
 {
-    [Header("Health")]
-    [StatBar(100)][SerializeField] private int hp = 3;
-    [StatBar(100)][SerializeField] private int maxHp = 3;
-
-    public int HP => hp;
-    public int MaxHP => maxHp;
-
-    [Header("Attack")]
-    [SerializeField] private float attackCooldown = 1f;
-
-    public float AttackCooldown => attackCooldown;
-
-    [Header("Death Settings")]
-    [SerializeField] private float fadeDuration = 1.5f;     // Time it takes to fade to 0 alpha
-    [SerializeField] private float delayBeforeFade = 0.5f;  // Time to let the death animation play
-
-    public event Action OnAttack;
-    public event Action OnHit;
-    public event Action OnDeath;
-
     private IAttackBehavior attackBehavior;
-    private float timer;
-    private bool isDead = false;
 
-    private void Awake()
+    // -------------------------------------------------
+
+    protected override void Awake()
     {
-        if (maxHp <= 0) maxHp = hp;
+        base.Awake();
+
         attackBehavior = GetComponent<IAttackBehavior>();
         attackBehavior?.Init(this);
     }
@@ -44,79 +27,15 @@ public class UnitCombat : MonoBehaviour
 
         if (attackBehavior != null && attackBehavior.HasTarget())
         {
-            OnAttack?.Invoke();
             timer = attackCooldown;
+            RaiseAttack();
+            // damage/projectile is dealt by Animation Event calling OnAttackHit()
         }
     }
 
-    // Called by Animation Event (via AnimationEventRelay) at the hit frame
-    public void OnAttackHit() => attackBehavior?.ExecuteAttack();
+    public override void OnAttackHit() => attackBehavior?.ExecuteAttack();
 
-    public void TakeDamage(int dmg)
-    {
-        if (isDead) return;
-
-        hp -= dmg;
-        GetComponent<DamageFlash>()?.Flash();
-        OnHit?.Invoke();
-
-        if (hp <= 0)
-        {
-            Die();
-        }
-    }
-
-    private void Die()
-    {
-        isDead = true;
-
-        // 1. Immediately fire the death event to start the animation
-        OnDeath?.Invoke();
-
-        // 2. Disable physical interactions immediately
-        var collider = GetComponent<Collider2D>();
-        if (collider != null) collider.enabled = false;
-
-        // 3. Kick off the fading timeline
-        StartCoroutine(DeathSequenceRoutine());
-    }
-
-    private IEnumerator DeathSequenceRoutine()
-    {
-        yield return new WaitForSeconds(delayBeforeFade);
-
-        SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
-        float elapsedTime = 0f;
-
-        while (elapsedTime < fadeDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
-
-            foreach (var sr in spriteRenderers)
-            {
-                if (sr != null)
-                {
-                    Color c = sr.color;
-                    c.a = alpha;
-                    sr.color = c;
-                }
-            }
-            yield return null;
-        }
-
-        Destroy(gameObject);
-    }
-
-    public void Heal(int amount)
-    {
-        if (isDead) return;
-        hp = Mathf.Min(hp + amount, maxHp);
-    }
-
+    // TODO: lane row is passed in by MergeManager but nothing consumes it yet.
+    // Wire up when CombatRegistry goes live, or remove both sides.
     public void SetRow(int row) { }
-
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected() { }
-#endif
 }

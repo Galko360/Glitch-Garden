@@ -1,13 +1,14 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+/// <summary>
+/// Walks right until a defender blocks the way, then attacks it.
+/// Melee by default; assign a projectilePrefab to make it ranged.
+/// </summary>
+public class Enemy : Combatant
 {
     public event Action OnStartAttacking;
     public event Action OnStopAttacking;
-    public event Action OnAttack;
-    public event Action OnDeath;
 
     [Header("Data (optional)")]
     [SerializeField] private EnemyData data;
@@ -16,23 +17,15 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float speed = 1f;
 
     [Header("Combat")]
-    [StatBar(50)][SerializeField] private int hp = 3;
     [StatBar(20)][SerializeField] private int attackDamage = 1;
-    [SerializeField] private float attackCooldown = 1f;
 
     [Header("Gold Settings")]
     [SerializeField] private int goldReward = 5;
     [SerializeField] private GameObject coinPrefab;
 
-    [Header("Death Settings")]
-    [SerializeField] private float fadeDuration = 1.5f;
-    [SerializeField] private float delayBeforeFade = 0.5f;
-
     [Header("Ranged Attack (leave empty for melee)")]
     [SerializeField] private EnemyBullet projectilePrefab;
     [SerializeField] private Transform firePoint;
-
-    public float AttackCooldown => attackCooldown;
 
     [Header("Raycast (Detect Defenders)")]
     [SerializeField] private float rayDistance = 0.8f;
@@ -40,14 +33,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private LayerMask defenderLayer;
     [SerializeField] private Transform sensorOrigin;
 
-    private float timer;
     private bool isAttacking;
-    private bool isDead = false;
-    private SpriteRenderer sr;
 
-    private void Awake()
+    // -------------------------------------------------
+
+    protected override void Awake()
     {
-        sr = GetComponentInChildren<SpriteRenderer>();
+        base.Awake();
 
         if (data != null)
         {
@@ -56,12 +48,13 @@ public class Enemy : MonoBehaviour
             attackDamage = data.attackDamage;
             attackCooldown = data.attackCooldown;
             goldReward = data.goldReward;
+            maxHp = hp;                 // re-sync after the data override
         }
     }
 
     private void Update()
     {
-        if (isDead || hp <= 0) return;
+        if (isDead) return;
 
         timer -= Time.deltaTime;
 
@@ -78,7 +71,7 @@ public class Enemy : MonoBehaviour
             if (timer <= 0f)
             {
                 timer = attackCooldown;
-                OnAttack?.Invoke();
+                RaiseAttack();
                 // damage/projectile is dealt by Animation Event calling OnAttackHit()
             }
             return;
@@ -92,6 +85,8 @@ public class Enemy : MonoBehaviour
 
         transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
+
+    // ----- Targeting -----
 
     private UnitCombat ScanForDefender()
     {
@@ -111,53 +106,33 @@ public class Enemy : MonoBehaviour
         return hit.collider.GetComponentInParent<UnitCombat>();
     }
 
-    // Called by Animation Event at the hit frame (melee and ranged)
-    public void OnAttackHit()
+    // ----- Attack -----
+
+    public override void OnAttackHit()
     {
         if (isDead) return;
 
         if (projectilePrefab != null)
             FireProjectile();
         else
-        {
-            UnitCombat defender = ScanForDefender();
-            defender?.TakeDamage(attackDamage);
-        }
+            ScanForDefender()?.TakeDamage(attackDamage);
     }
 
     private void FireProjectile()
     {
         Transform spawn = firePoint != null ? firePoint : transform;
+
         EnemyBullet bullet = Instantiate(projectilePrefab, spawn.position, Quaternion.identity);
         bullet.damage = attackDamage;
         bullet.SetDirection(Vector2.right);
     }
 
-    public void TakeDamage(int dmg)
+    // ----- Death -----
+
+    protected override void Die()
     {
-        if (isDead) return;
-
-        hp -= dmg;
-        GetComponent<DamageFlash>()?.Flash();
-
-        if (hp <= 0)
-        {
-            Die();
-        }
-    }
-
-    private void Die()
-    {
-        isDead = true;
-
-        OnDeath?.Invoke();
-
+        base.Die();
         SpawnCoin();
-
-        var collider = GetComponent<Collider2D>();
-        if (collider != null) collider.enabled = false;
-
-        StartCoroutine(DeathSequenceRoutine());
     }
 
     private void SpawnCoin()
@@ -169,45 +144,19 @@ public class Enemy : MonoBehaviour
         }
 
         GameObject spawnedCoin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
-        if (spawnedCoin.TryGetComponent<Coin>(out var coinScript))
-        {
-            // Simply pass the gold amount; Coin handles its trajectory and target
-            coinScript.Launch(goldReward);
-        }
+
+        if (spawnedCoin.TryGetComponent<Coin>(out Coin coinScript))
+            coinScript.Launch(goldReward);   // Coin handles its own trajectory and target
     }
 
-    private IEnumerator DeathSequenceRoutine()
-    {
-        yield return new WaitForSeconds(delayBeforeFade);
-
-        SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
-        float elapsedTime = 0f;
-
-        while (elapsedTime < fadeDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
-
-            foreach (var renderer in spriteRenderers)
-            {
-                if (renderer != null)
-                {
-                    Color c = renderer.color;
-                    c.a = alpha;
-                    renderer.color = c;
-                }
-            }
-            yield return null;
-        }
-
-        Destroy(gameObject);
-    }
+    // ----- Gizmos -----
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Transform o = sensorOrigin != null ? sensorOrigin : transform;
         Gizmos.color = projectilePrefab != null ? Color.cyan : Color.yellow;
+
         // Width = rayBoxSize.x + rayDistance to match the actual BoxCast sweep area
         Gizmos.DrawWireCube(
             o.position + Vector3.right * rayDistance * 0.5f,
