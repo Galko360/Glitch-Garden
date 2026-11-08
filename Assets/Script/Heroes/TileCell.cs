@@ -16,10 +16,6 @@ public class TileCell : MonoBehaviour
     [SerializeField] private Sprite occupiedSprite;
     [SerializeField] private Sprite availableSprite;
 
-    // ----- Lane -----
-    public Lane ParentLane { get; private set; }
-    public void SetLane(Lane lane) { ParentLane = lane; }
-
     // ----- Lifecycle -----
 
     private void Awake()
